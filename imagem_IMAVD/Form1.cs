@@ -121,5 +121,56 @@ namespace PhotoRock
         {
 
         }
+
+        private void rotateBtn_Click(object sender, EventArgs e) {
+
+            if (pictureBox1.Image == null) {
+                return;
+            }
+
+            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap _img = RotateImageN(OriginalImage, 90.0F);
+            pictureBox1.Image = _img;
+        }
+
+        private Bitmap RotateImageN(Bitmap b, float angle) {
+            //Create a new empty bitmap to hold rotated image.
+            Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
+            //Make a graphics object from the empty bitmap.
+            Graphics g = Graphics.FromImage(returnBitmap);
+            //move rotation point to center of image.
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+            //Rotate.        
+            g.RotateTransform(angle);
+            //Move image back.
+            g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
+            //Draw passed in image onto graphics object.
+            //Found ERROR 1: Many people do g.DwarImage(b,0,0); The problem is that you re giving just the position
+            //Found ERROR 2: Many people do g.DrawImage(b, new Point(0,0));
+
+            g.DrawImage(b, 0, 0, b.Width, b.Height);
+            return returnBitmap;
+        }
+
+        private void flipHBtn_Click(object sender, EventArgs e) {
+            if (pictureBox1.Image == null) {
+                return;
+            }
+            Image img = pictureBox1.Image;
+                //rotate the picture by 90 degrees and re-save the picture as a Jpeg
+                img.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            pictureBox1.Image = img;
+        }
+
+        private void flipVBtn_Click(object sender, EventArgs e) {
+            if (pictureBox1.Image == null) {
+                return;
+            }
+            Image img = pictureBox1.Image;
+            //rotate the picture by 90 degrees and re-save the picture as a Jpeg
+            img.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            pictureBox1.Image = img;
+        }
     }
 }
