@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace imagem_IMAVD.Properties
+namespace PhotoRock.Properties
 {
 
 

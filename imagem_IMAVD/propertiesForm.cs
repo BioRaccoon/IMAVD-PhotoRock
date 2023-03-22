@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace imagem_IMAVD
+namespace PhotoRock
 {
     public partial class propertiesForm : Form
     {

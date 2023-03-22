@@ -1,4 +1,4 @@
-﻿namespace imagem_IMAVD
+﻿namespace PhotoRock
 {
     partial class propertiesForm
     {
