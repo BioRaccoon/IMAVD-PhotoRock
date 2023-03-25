@@ -15,8 +15,10 @@ namespace PhotoRock
     public partial class Form1 : Form
     {
         bool imageIsSelected = false;
+        bool imageHasFilter = false;
         string filePath;
         Image img;
+        Bitmap originalImage;
 
         int cropX;
         int cropY;
@@ -30,6 +32,9 @@ namespace PhotoRock
         public Form1()
         {
             InitializeComponent();
+            pictureBox3.Visible= false;
+            
+
         }
 
         private void loadBtn_Click(object sender, EventArgs e)
@@ -45,10 +50,13 @@ namespace PhotoRock
             {
                 filePath = openFileDialog1.FileName;
                 pictureBox1.Image = Image.FromFile(filePath);
+                pictureBox3.Image = Image.FromFile(filePath);
                 img = Image.FromFile(filePath);
                 imageIsSelected = true;
+                
             }
         }
+
 
         private void propertiesBtn_Click(object sender, EventArgs e)
         {
@@ -171,6 +179,64 @@ namespace PhotoRock
             //rotate the picture by 90 degrees and re-save the picture as a Jpeg
             img.RotateFlip(RotateFlipType.RotateNoneFlipY);
             pictureBox1.Image = img;
+        }
+
+        private void redFilter_Click(object sender, EventArgs e)
+        {
+            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            for (int y = 0; y < filteredImage.Height; y++)
+            {
+                for (int x = 0; x < filteredImage.Width; x++)
+                {
+                    Color pixelColor = filteredImage.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(pixelColor.R, 0, 0);
+                    filteredImage.SetPixel(x, y, newColor);
+                    pictureBox1.Image = filteredImage;
+                    imageHasFilter=true;
+                }
+            }
+        }
+
+        private void greenFilter_Click(object sender, EventArgs e)
+        {
+            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            for (int y = 0; y < filteredImage.Height; y++)
+            {
+                for (int x = 0; x < filteredImage.Width; x++)
+                {
+                    Color pixelColor = filteredImage.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(0, pixelColor.G, 0);
+                    filteredImage.SetPixel(x, y, newColor);
+                    pictureBox1.Image = filteredImage;
+                    imageHasFilter = true;
+                }
+            }
+
+        }
+
+        private void blueFilter_Click(object sender, EventArgs e)
+        {
+            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            for (int y = 0; y < filteredImage.Height; y++)
+            {
+                for (int x = 0; x < filteredImage.Width; x++)
+                {
+                    Color pixelColor = filteredImage.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(0, 0, pixelColor.B);
+                    filteredImage.SetPixel(x, y, newColor);
+                    pictureBox1.Image = filteredImage;
+                    imageHasFilter = true;
+                }
+            }
+        }
+
+        private void clearFilter_Click(object sender, EventArgs e)
+        {
+            if(imageHasFilter)
+            {
+                pictureBox1.Image = pictureBox3.Image;
+                imageHasFilter=false;
+            } 
         }
     }
 }
