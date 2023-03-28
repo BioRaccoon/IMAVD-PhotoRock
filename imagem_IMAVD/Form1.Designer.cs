@@ -48,6 +48,8 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.cropTab.SuspendLayout();
@@ -62,7 +64,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(9, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(414, 346);
+            this.pictureBox1.Size = new System.Drawing.Size(346, 346);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -148,6 +150,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.button1);
@@ -161,7 +165,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(5, 98);
+            this.button3.Location = new System.Drawing.Point(5, 187);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(338, 41);
@@ -172,7 +176,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(5, 52);
+            this.button2.Location = new System.Drawing.Point(5, 141);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(338, 41);
@@ -188,9 +192,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(338, 41);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Rotate";
+            this.button1.Text = "Rotate 45º";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.rotateBtn_Click);
+            this.button1.Click += new System.EventHandler(this.rotate45Btn_Click);
             // 
             // tabPage3
             // 
@@ -274,6 +278,28 @@
             this.pictureBox3.TabIndex = 8;
             this.pictureBox3.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(5, 51);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(338, 41);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Rotate 90º";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.rotate90Btn_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(5, 96);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(338, 41);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Rotate 180º";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.rotate180Btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,6 +347,8 @@
         private System.Windows.Forms.Button blueFilter;
         private System.Windows.Forms.Button clearFilter;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
     }
 }
 

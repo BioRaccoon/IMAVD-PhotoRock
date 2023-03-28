@@ -16,6 +16,7 @@ namespace PhotoRock
     {
         bool imageIsSelected = false;
         bool imageHasFilter = false;
+        bool tilted = false;
         string filePath;
         Image img;
         Bitmap originalImage;
@@ -130,9 +131,24 @@ namespace PhotoRock
 
         }
 
-        private void rotateBtn_Click(object sender, EventArgs e) {
+        private void rotate45Btn_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                return;
+            }
 
-            if (pictureBox1.Image == null) {
+            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap _img = Rotate45(OriginalImage, tilted);
+            pictureBox1.Image = _img;
+            tilted = !tilted;
+        }
+
+
+        private void rotate90Btn_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
                 return;
             }
 
@@ -141,7 +157,61 @@ namespace PhotoRock
             pictureBox1.Image = _img;
         }
 
-        private Bitmap RotateImageN(Bitmap b, float angle) {
+        private void rotate180Btn_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                return;
+            }
+
+            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap _img = RotateImageN(OriginalImage, 180.0F);
+            pictureBox1.Image = _img;
+        }
+
+        private Bitmap Rotate45(Bitmap b, bool tilted)
+        {
+            float angle = 45.0F;
+            if (angle > 0)
+            {
+                int l = b.Width;
+                int h = b.Height;
+                double an = angle * Math.PI / 180;
+                double cos = Math.Abs(Math.Cos(an));
+                double sin = Math.Abs(Math.Sin(an));
+                int nl = (int)(l * cos + h * sin);
+                int nh = (int)(l * sin + h * cos);
+                Bitmap returnBitmap = new Bitmap(nl, nh);
+                Graphics g = Graphics.FromImage(returnBitmap);
+                if (!tilted)
+                {
+                    g.TranslateTransform((float)(nl - l) / 2, (float)(nh - h) / 2);
+                    g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+                }
+                else
+                {
+                    g.TranslateTransform((float)(nl - l) / 2, (float)(nh - h) / 2);
+                    g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+                    float scIdx = (float)nl / l;
+                    //Console.WriteLine(scIdx.ToString());
+                    //nao sei pq eq tenho q dar scale 2x mas funciona :))))) adoro geometria
+                    g.ScaleTransform(scIdx, scIdx);
+                    g.ScaleTransform(scIdx, scIdx);
+                }
+
+                g.RotateTransform(angle);
+                g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
+                g.DrawImage(b, new Point(0, 0));
+
+                //Console.WriteLine(nl.ToString() + " " + nh.ToString() + " " + l.ToString() + " " + h.ToString());
+
+                return returnBitmap;
+            }
+            else return b;
+        }
+
+        private Bitmap RotateImageN(Bitmap b, float angle)
+        {
             //Create a new empty bitmap to hold rotated image.
             Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
             //Make a graphics object from the empty bitmap.
