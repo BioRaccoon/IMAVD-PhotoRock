@@ -40,8 +40,7 @@ namespace PhotoRock
             crop2Btn.Enabled = false;
             crop4Btn.Enabled = false;
             crop2TrianglesBtn.Enabled = false;
-            pictureBox3.Visible= false;
-            
+            mainImageCopy.Visible= false; 
 
         }
 
@@ -57,8 +56,8 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 filePath = openFileDialog1.FileName;
-                pictureBox1.Image = Image.FromFile(filePath);
-                pictureBox3.Image = Image.FromFile(filePath);
+                mainImage.Image = Image.FromFile(filePath);
+                mainImageCopy.Image = Image.FromFile(filePath);
                 img = Image.FromFile(filePath);
                 imageIsSelected = true;
 
@@ -98,19 +97,19 @@ namespace PhotoRock
                 cropPen = new Pen(Color.Black, 3);
                 cropPen.DashStyle = DashStyle.DashDotDot;
             }
-            pictureBox1.Refresh();
+            mainImage.Refresh();
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (pictureBox1.Image == null)
+            if (mainImage.Image == null)
                 return;
             if (e.Button == MouseButtons.Left && cropEnabled)
             {
-                pictureBox1.Refresh();
+                mainImage.Refresh();
                 cropWidth = e.X - cropX;
                 cropHeight = e.Y - cropY;
-                pictureBox1.CreateGraphics().DrawRectangle(cropPen, cropX, cropY, cropWidth, cropHeight);
+                mainImage.CreateGraphics().DrawRectangle(cropPen, cropX, cropY, cropWidth, cropHeight);
             }
         }
 
@@ -125,7 +124,7 @@ namespace PhotoRock
                 }
                 Rectangle rect = new Rectangle(cropX, cropY, cropWidth, cropHeight);
 
-                Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+                Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
 
                 Bitmap _img = new Bitmap(cropWidth, cropHeight);
 
@@ -136,7 +135,7 @@ namespace PhotoRock
                 g.CompositingQuality = CompositingQuality.HighQuality;
 
                 g.DrawImage(OriginalImage, 0, 0, rect, GraphicsUnit.Pixel);
-                pictureBox1.Image = _img;
+                mainImage.Image = _img;
                 //pictureBox1.Width = _img.Width;
                 //pictureBox1.Height = _img.Height;
                 cropBtn.Enabled = false;
@@ -164,7 +163,7 @@ namespace PhotoRock
                 cropBtn.Enabled = false;
                 Cursor = Cursors.Default;
                 cropPen = null;
-                pictureBox1.Refresh();
+                mainImage.Refresh();
                 crop2Btn.Enabled = true;
                 crop4Btn.Enabled = true;
                 crop2TrianglesBtn.Enabled = true;
@@ -175,12 +174,12 @@ namespace PhotoRock
         private void crop2Btn_Click(object sender, EventArgs e)
         {
             Crop2SquareForm crop2SquareForm = new Crop2SquareForm();
-            crop2SquareForm.imageToCrop = pictureBox1;
+            crop2SquareForm.imageToCrop = mainImage;
             DialogResult result = crop2SquareForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                pictureBox1.Image = crop2SquareForm.newImageToWork;
+                mainImage.Image = crop2SquareForm.newImageToWork;
                 //pictureBox1.Width = crop2SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2SquareForm.newImageToWork.Height;
             }
@@ -188,26 +187,26 @@ namespace PhotoRock
 
         private void rotate45Btn_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image == null)
+            if (mainImage.Image == null)
             {
                 return;
             }
 
-            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = Rotate45(OriginalImage, tilted);
-            pictureBox1.Image = _img;
+            mainImage.Image = _img;
             tilted = !tilted;
         }
 
         private void crop4Btn_Click(object sender, EventArgs e)
         {
             Crop4SquareForm crop4SquareForm = new Crop4SquareForm();
-            crop4SquareForm.imageToCrop = pictureBox1;
+            crop4SquareForm.imageToCrop = mainImage;
             DialogResult result = crop4SquareForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                pictureBox1.Image = crop4SquareForm.newImageToWork;
+                mainImage.Image = crop4SquareForm.newImageToWork;
                 //pictureBox1.Width = crop4SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop4SquareForm.newImageToWork.Height;
             }
@@ -216,41 +215,39 @@ namespace PhotoRock
         private void crop2TrianglesBtn_Click(object sender, EventArgs e)
         {
             Crop2TriangleForm crop2TriangleForm = new Crop2TriangleForm();
-            crop2TriangleForm.imageToCrop = pictureBox1;
+            crop2TriangleForm.imageToCrop = mainImage;
             DialogResult result = crop2TriangleForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                pictureBox1.Image = crop2TriangleForm.newImageToWork;
+                mainImage.Image = crop2TriangleForm.newImageToWork;
                 //pictureBox1.Width = crop2TriangleForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2TriangleForm.newImageToWork.Height;
             }
         }
 
-        private void rotateBtn_Click(object sender, EventArgs e) {
-
         private void rotate90Btn_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image == null)
+            if (mainImage.Image == null)
             {
                 return;
             }
 
-            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = RotateImageN(OriginalImage, 90.0F);
-            pictureBox1.Image = _img;
+            mainImage.Image = _img;
         }
 
         private void rotate180Btn_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image == null)
+            if (mainImage.Image == null)
             {
                 return;
             }
 
-            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = RotateImageN(OriginalImage, 180.0F);
-            pictureBox1.Image = _img;
+            mainImage.Image = _img;
         }
 
         private Bitmap Rotate45(Bitmap b, bool tilted)
@@ -316,28 +313,28 @@ namespace PhotoRock
         }
 
         private void flipHBtn_Click(object sender, EventArgs e) {
-            if (pictureBox1.Image == null) {
+            if (mainImage.Image == null) {
                 return;
             }
-            Image img = pictureBox1.Image;
+            Image img = mainImage.Image;
                 //rotate the picture by 90 degrees and re-save the picture as a Jpeg
                 img.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            pictureBox1.Image = img;
+            mainImage.Image = img;
         }
 
         private void flipVBtn_Click(object sender, EventArgs e) {
-            if (pictureBox1.Image == null) {
+            if (mainImage.Image == null) {
                 return;
             }
-            Image img = pictureBox1.Image;
+            Image img = mainImage.Image;
             //rotate the picture by 90 degrees and re-save the picture as a Jpeg
             img.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            pictureBox1.Image = img;
+            mainImage.Image = img;
         }
 
         private void redFilter_Click(object sender, EventArgs e)
         {
-            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            Bitmap filteredImage = (Bitmap)mainImage.Image;
             for (int y = 0; y < filteredImage.Height; y++)
             {
                 for (int x = 0; x < filteredImage.Width; x++)
@@ -345,7 +342,7 @@ namespace PhotoRock
                     Color pixelColor = filteredImage.GetPixel(x, y);
                     Color newColor = Color.FromArgb(pixelColor.R, 0, 0);
                     filteredImage.SetPixel(x, y, newColor);
-                    pictureBox1.Image = filteredImage;
+                    mainImage.Image = filteredImage;
                     imageHasFilter=true;
                 }
             }
@@ -353,7 +350,7 @@ namespace PhotoRock
 
         private void greenFilter_Click(object sender, EventArgs e)
         {
-            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            Bitmap filteredImage = (Bitmap)mainImage.Image;
             for (int y = 0; y < filteredImage.Height; y++)
             {
                 for (int x = 0; x < filteredImage.Width; x++)
@@ -361,7 +358,7 @@ namespace PhotoRock
                     Color pixelColor = filteredImage.GetPixel(x, y);
                     Color newColor = Color.FromArgb(0, pixelColor.G, 0);
                     filteredImage.SetPixel(x, y, newColor);
-                    pictureBox1.Image = filteredImage;
+                    mainImage.Image = filteredImage;
                     imageHasFilter = true;
                 }
             }
@@ -370,7 +367,7 @@ namespace PhotoRock
 
         private void blueFilter_Click(object sender, EventArgs e)
         {
-            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            Bitmap filteredImage = (Bitmap)mainImage.Image;
             for (int y = 0; y < filteredImage.Height; y++)
             {
                 for (int x = 0; x < filteredImage.Width; x++)
@@ -378,7 +375,7 @@ namespace PhotoRock
                     Color pixelColor = filteredImage.GetPixel(x, y);
                     Color newColor = Color.FromArgb(0, 0, pixelColor.B);
                     filteredImage.SetPixel(x, y, newColor);
-                    pictureBox1.Image = filteredImage;
+                    mainImage.Image = filteredImage;
                     imageHasFilter = true;
                 }
             }
@@ -388,10 +385,14 @@ namespace PhotoRock
         {
             if(imageHasFilter)
             {
-                pictureBox1.Image = pictureBox3.Image;
+                mainImage.Image = mainImageCopy.Image;
                 imageHasFilter=false;
             } 
         }
 
+        private void undoBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
