@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 using imagem_IMAVD;
+using imagem_IMAVD.Utils;
 
 namespace PhotoRock
 {
@@ -72,6 +73,10 @@ namespace PhotoRock
             }
         }
 
+        private void saveImageBtn_Click(object sender, EventArgs e)
+        {
+            GlobalFunctions.saveImage(mainImage.Image);
+        }
 
         private void propertiesBtn_Click(object sender, EventArgs e)
         {
@@ -394,5 +399,6 @@ namespace PhotoRock
         {
 
         }
+
     }
 }

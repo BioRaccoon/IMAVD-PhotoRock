@@ -339,6 +339,7 @@
             this.mainImageCopy.Margin = new System.Windows.Forms.Padding(4);
             this.mainImageCopy.Name = "mainImageCopy";
             this.mainImageCopy.Size = new System.Drawing.Size(550, 550);
+            this.mainImageCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mainImageCopy.TabIndex = 8;
             this.mainImageCopy.TabStop = false;
             // 
@@ -351,6 +352,7 @@
             this.saveImageBtn.TabIndex = 9;
             this.saveImageBtn.Text = "Save Image";
             this.saveImageBtn.UseVisualStyleBackColor = true;
+            this.saveImageBtn.Click += new System.EventHandler(this.saveImageBtn_Click);
             // 
             // undoBtn
             // 
