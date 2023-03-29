@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using imagem_IMAVD;
 using imagem_IMAVD.Utils;
+using static System.Net.Mime.MediaTypeNames;
+using Image = System.Drawing.Image;
 
 namespace PhotoRock
 {
@@ -30,7 +32,7 @@ namespace PhotoRock
         public Pen cropPen;
         public DashStyle cropDashStyle = DashStyle.DashDot;
         private bool cropEnabled;
-
+        public List<Image> images = new List<Image>();
         public MainForm()
         {
             InitializeComponent();
@@ -61,6 +63,7 @@ namespace PhotoRock
                 mainImageCopy.Image = Image.FromFile(filePath);
                 img = Image.FromFile(filePath);
                 imageIsSelected = true;
+                images.Add(img);
 
                 selectCropAreaBtn.Enabled = true;
                 crop2Btn.Enabled = true;
@@ -149,6 +152,8 @@ namespace PhotoRock
                 crop2Btn.Enabled = true;
                 crop4Btn.Enabled = true;
                 crop2TrianglesBtn.Enabled = true;
+                images.Add(mainImage.Image);
+
             }
         }
 
@@ -185,6 +190,7 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = crop2SquareForm.newImageToWork;
+                images.Add(mainImage.Image);
                 //pictureBox1.Width = crop2SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2SquareForm.newImageToWork.Height;
             }
@@ -212,6 +218,7 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = crop4SquareForm.newImageToWork;
+                images.Add(mainImage.Image);
                 //pictureBox1.Width = crop4SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop4SquareForm.newImageToWork.Height;
             }
@@ -226,6 +233,7 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = crop2TriangleForm.newImageToWork;
+                images.Add(mainImage.Image);
                 //pictureBox1.Width = crop2TriangleForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2TriangleForm.newImageToWork.Height;
             }
@@ -351,6 +359,7 @@ namespace PhotoRock
                     imageHasFilter=true;
                 }
             }
+            images.Add(mainImage.Image);
         }
 
         private void greenFilter_Click(object sender, EventArgs e)
@@ -367,7 +376,7 @@ namespace PhotoRock
                     imageHasFilter = true;
                 }
             }
-
+            images.Add(mainImage.Image);
         }
 
         private void blueFilter_Click(object sender, EventArgs e)
@@ -384,6 +393,7 @@ namespace PhotoRock
                     imageHasFilter = true;
                 }
             }
+            images.Add(mainImage.Image);
         }
 
         private void clearFilter_Click(object sender, EventArgs e)
@@ -397,7 +407,14 @@ namespace PhotoRock
 
         private void undoBtn_Click(object sender, EventArgs e)
         {
-
+            if (images.Count > 1) {
+                mainImage.Image = images[images.Count - 2];
+                images.RemoveAt(images.Count - 1);
+            }
+            else
+            {
+                MessageBox.Show("si fodeu");
+            }
         }
 
     }
