@@ -16,8 +16,11 @@ namespace PhotoRock
     public partial class MainForm : Form
     {
         bool imageIsSelected = false;
+        bool imageHasFilter = false;
+        bool tilted = false;
         string filePath;
         Image img;
+        Bitmap originalImage;
 
         int cropX;
         int cropY;
@@ -37,6 +40,9 @@ namespace PhotoRock
             crop2Btn.Enabled = false;
             crop4Btn.Enabled = false;
             crop2TrianglesBtn.Enabled = false;
+            pictureBox3.Visible= false;
+            
+
         }
 
         private void loadBtn_Click(object sender, EventArgs e)
@@ -52,6 +58,7 @@ namespace PhotoRock
             {
                 filePath = openFileDialog1.FileName;
                 pictureBox1.Image = Image.FromFile(filePath);
+                pictureBox3.Image = Image.FromFile(filePath);
                 img = Image.FromFile(filePath);
                 imageIsSelected = true;
 
@@ -62,8 +69,10 @@ namespace PhotoRock
 
                 //MessageBox.Show("s - " + pictureBox1.Width + "\nt - " + pictureBox1.Height);
 
+                
             }
         }
+
 
         private void propertiesBtn_Click(object sender, EventArgs e)
         {
@@ -177,6 +186,19 @@ namespace PhotoRock
             }
         }
 
+        private void rotate45Btn_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                return;
+            }
+
+            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap _img = Rotate45(OriginalImage, tilted);
+            pictureBox1.Image = _img;
+            tilted = !tilted;
+        }
+
         private void crop4Btn_Click(object sender, EventArgs e)
         {
             Crop4SquareForm crop4SquareForm = new Crop4SquareForm();
@@ -207,7 +229,10 @@ namespace PhotoRock
 
         private void rotateBtn_Click(object sender, EventArgs e) {
 
-            if (pictureBox1.Image == null) {
+        private void rotate90Btn_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
                 return;
             }
 
@@ -216,7 +241,61 @@ namespace PhotoRock
             pictureBox1.Image = _img;
         }
 
-        private Bitmap RotateImageN(Bitmap b, float angle) {
+        private void rotate180Btn_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                return;
+            }
+
+            Bitmap OriginalImage = new Bitmap(pictureBox1.Image, pictureBox1.Width, pictureBox1.Height);
+            Bitmap _img = RotateImageN(OriginalImage, 180.0F);
+            pictureBox1.Image = _img;
+        }
+
+        private Bitmap Rotate45(Bitmap b, bool tilted)
+        {
+            float angle = 45.0F;
+            if (angle > 0)
+            {
+                int l = b.Width;
+                int h = b.Height;
+                double an = angle * Math.PI / 180;
+                double cos = Math.Abs(Math.Cos(an));
+                double sin = Math.Abs(Math.Sin(an));
+                int nl = (int)(l * cos + h * sin);
+                int nh = (int)(l * sin + h * cos);
+                Bitmap returnBitmap = new Bitmap(nl, nh);
+                Graphics g = Graphics.FromImage(returnBitmap);
+                if (!tilted)
+                {
+                    g.TranslateTransform((float)(nl - l) / 2, (float)(nh - h) / 2);
+                    g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+                }
+                else
+                {
+                    g.TranslateTransform((float)(nl - l) / 2, (float)(nh - h) / 2);
+                    g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+                    float scIdx = (float)nl / l;
+                    //Console.WriteLine(scIdx.ToString());
+                    //nao sei pq eq tenho q dar scale 2x mas funciona :))))) adoro geometria
+                    g.ScaleTransform(scIdx, scIdx);
+                    g.ScaleTransform(scIdx, scIdx);
+                }
+
+                g.RotateTransform(angle);
+                g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
+                g.DrawImage(b, new Point(0, 0));
+
+                //Console.WriteLine(nl.ToString() + " " + nh.ToString() + " " + l.ToString() + " " + h.ToString());
+
+                return returnBitmap;
+            }
+            else return b;
+        }
+
+        private Bitmap RotateImageN(Bitmap b, float angle)
+        {
             //Create a new empty bitmap to hold rotated image.
             Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
             //Make a graphics object from the empty bitmap.
@@ -254,6 +333,64 @@ namespace PhotoRock
             //rotate the picture by 90 degrees and re-save the picture as a Jpeg
             img.RotateFlip(RotateFlipType.RotateNoneFlipY);
             pictureBox1.Image = img;
+        }
+
+        private void redFilter_Click(object sender, EventArgs e)
+        {
+            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            for (int y = 0; y < filteredImage.Height; y++)
+            {
+                for (int x = 0; x < filteredImage.Width; x++)
+                {
+                    Color pixelColor = filteredImage.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(pixelColor.R, 0, 0);
+                    filteredImage.SetPixel(x, y, newColor);
+                    pictureBox1.Image = filteredImage;
+                    imageHasFilter=true;
+                }
+            }
+        }
+
+        private void greenFilter_Click(object sender, EventArgs e)
+        {
+            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            for (int y = 0; y < filteredImage.Height; y++)
+            {
+                for (int x = 0; x < filteredImage.Width; x++)
+                {
+                    Color pixelColor = filteredImage.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(0, pixelColor.G, 0);
+                    filteredImage.SetPixel(x, y, newColor);
+                    pictureBox1.Image = filteredImage;
+                    imageHasFilter = true;
+                }
+            }
+
+        }
+
+        private void blueFilter_Click(object sender, EventArgs e)
+        {
+            Bitmap filteredImage = (Bitmap)pictureBox1.Image;
+            for (int y = 0; y < filteredImage.Height; y++)
+            {
+                for (int x = 0; x < filteredImage.Width; x++)
+                {
+                    Color pixelColor = filteredImage.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(0, 0, pixelColor.B);
+                    filteredImage.SetPixel(x, y, newColor);
+                    pictureBox1.Image = filteredImage;
+                    imageHasFilter = true;
+                }
+            }
+        }
+
+        private void clearFilter_Click(object sender, EventArgs e)
+        {
+            if(imageHasFilter)
+            {
+                pictureBox1.Image = pictureBox3.Image;
+                imageHasFilter=false;
+            } 
         }
 
     }

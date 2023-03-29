@@ -43,12 +43,21 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.clearFilter = new System.Windows.Forms.Button();
+            this.blueFilter = new System.Windows.Forms.Button();
+            this.greenFilter = new System.Windows.Forms.Button();
+            this.redFilter = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cropTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -84,6 +93,14 @@
             this.propertiesBtn.Text = "Show Details";
             this.propertiesBtn.UseVisualStyleBackColor = true;
             this.propertiesBtn.Click += new System.EventHandler(this.propertiesBtn_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(428, 362);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(151, 142);
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
             // 
             // selectCropAreaBtn
             // 
@@ -170,6 +187,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.button1);
@@ -183,8 +202,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(5, 98);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Location = new System.Drawing.Point(5, 187);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(338, 41);
             this.button3.TabIndex = 2;
@@ -194,8 +213,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(5, 52);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(5, 141);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(338, 41);
             this.button2.TabIndex = 1;
@@ -206,16 +225,20 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(5, 6);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(338, 41);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Rotate";
+            this.button1.Text = "Rotate 45º";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.rotateBtn_Click);
+            this.button1.Click += new System.EventHandler(this.rotate45Btn_Click);
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.clearFilter);
+            this.tabPage3.Controls.Add(this.blueFilter);
+            this.tabPage3.Controls.Add(this.greenFilter);
+            this.tabPage3.Controls.Add(this.redFilter);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
@@ -223,6 +246,46 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Adjustments";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // clearFilter
+            // 
+            this.clearFilter.Location = new System.Drawing.Point(47, 175);
+            this.clearFilter.Name = "clearFilter";
+            this.clearFilter.Size = new System.Drawing.Size(191, 23);
+            this.clearFilter.TabIndex = 3;
+            this.clearFilter.Text = "Clear Filter";
+            this.clearFilter.UseVisualStyleBackColor = true;
+            this.clearFilter.Click += new System.EventHandler(this.clearFilter_Click);
+            // 
+            // blueFilter
+            // 
+            this.blueFilter.Location = new System.Drawing.Point(47, 116);
+            this.blueFilter.Name = "blueFilter";
+            this.blueFilter.Size = new System.Drawing.Size(191, 23);
+            this.blueFilter.TabIndex = 2;
+            this.blueFilter.Text = "Blue Filter";
+            this.blueFilter.UseVisualStyleBackColor = true;
+            this.blueFilter.Click += new System.EventHandler(this.blueFilter_Click);
+            // 
+            // greenFilter
+            // 
+            this.greenFilter.Location = new System.Drawing.Point(47, 73);
+            this.greenFilter.Name = "greenFilter";
+            this.greenFilter.Size = new System.Drawing.Size(191, 23);
+            this.greenFilter.TabIndex = 1;
+            this.greenFilter.Text = "Green Filter";
+            this.greenFilter.UseVisualStyleBackColor = true;
+            this.greenFilter.Click += new System.EventHandler(this.greenFilter_Click);
+            // 
+            // redFilter
+            // 
+            this.redFilter.Location = new System.Drawing.Point(47, 28);
+            this.redFilter.Name = "redFilter";
+            this.redFilter.Size = new System.Drawing.Size(191, 23);
+            this.redFilter.TabIndex = 0;
+            this.redFilter.Text = "Red Filter";
+            this.redFilter.UseVisualStyleBackColor = true;
+            this.redFilter.Click += new System.EventHandler(this.redFilter_Click);
             // 
             // tabPage4
             // 
@@ -244,11 +307,42 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // MainForm
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(9, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(413, 346);
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(5, 51);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(338, 41);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Rotate 90º";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.rotate90Btn_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(5, 96);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(338, 41);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Rotate 180º";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.rotate180Btn_Click);
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 418);
+            this.ClientSize = new System.Drawing.Size(799, 704);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.cropTab);
             this.Controls.Add(this.propertiesBtn);
             this.Controls.Add(this.loadBtn);
@@ -260,6 +354,8 @@
             this.cropTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,6 +379,13 @@
         private System.Windows.Forms.Button crop2Btn;
         private System.Windows.Forms.Button crop2TrianglesBtn;
         private System.Windows.Forms.Button crop4Btn;
+        private System.Windows.Forms.Button redFilter;
+        private System.Windows.Forms.Button greenFilter;
+        private System.Windows.Forms.Button blueFilter;
+        private System.Windows.Forms.Button clearFilter;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
     }
 }
 
