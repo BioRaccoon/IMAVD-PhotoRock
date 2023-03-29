@@ -1,6 +1,6 @@
 ﻿namespace PhotoRock
 {
-    partial class propertiesForm
+    partial class PropertiesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -162,7 +162,7 @@
             this.image_createdon.TabIndex = 11;
             this.image_createdon.Text = "image_CreatedOn";
             // 
-            // propertiesForm
+            // PropertiesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -179,8 +179,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "propertiesForm";
-            this.Text = "propertiesForm";
+            this.Name = "PropertiesForm";
+            this.Text = "Properties";
             this.Load += new System.EventHandler(this.propertiesForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

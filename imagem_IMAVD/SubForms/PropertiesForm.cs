@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace PhotoRock
 {
-    public partial class propertiesForm : Form
+    public partial class PropertiesForm : Form
     {
         public string FilePath { get; set; }
-        public propertiesForm()
+        public PropertiesForm()
         {
             InitializeComponent();
         }

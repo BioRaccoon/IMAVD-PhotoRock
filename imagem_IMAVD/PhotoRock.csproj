@@ -46,25 +46,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="SubForms\Crop2SquareForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="SubForms\Crop2SquareForm.Designer.cs">
+      <DependentUpon>Crop2SquareForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForms\Crop2TriangleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\Crop2TriangleForm.Designer.cs">
+      <DependentUpon>Crop2TriangleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForms\Crop4SquareForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\Crop4SquareForm.Designer.cs">
+      <DependentUpon>Crop4SquareForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="propertiesForm.cs">
+    <Compile Include="SubForms\PropertiesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="propertiesForm.Designer.cs">
-      <DependentUpon>propertiesForm.cs</DependentUpon>
+    <Compile Include="SubForms\PropertiesForm.Designer.cs">
+      <DependentUpon>PropertiesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Utils\GlobalFunctions.cs" />
+    <EmbeddedResource Include="SubForms\Crop2SquareForm.resx">
+      <DependentUpon>Crop2SquareForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="propertiesForm.resx">
-      <DependentUpon>propertiesForm.cs</DependentUpon>
+    <EmbeddedResource Include="SubForms\Crop2TriangleForm.resx">
+      <DependentUpon>Crop2TriangleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForms\Crop4SquareForm.resx">
+      <DependentUpon>Crop4SquareForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForms\PropertiesForm.resx">
+      <DependentUpon>PropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
