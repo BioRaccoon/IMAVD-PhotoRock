@@ -39,9 +39,9 @@
             // 
             // triangle2Btn
             // 
-            this.triangle2Btn.Location = new System.Drawing.Point(580, 501);
+            this.triangle2Btn.Location = new System.Drawing.Point(580, 622);
             this.triangle2Btn.Name = "triangle2Btn";
-            this.triangle2Btn.Size = new System.Drawing.Size(555, 50);
+            this.triangle2Btn.Size = new System.Drawing.Size(550, 50);
             this.triangle2Btn.TabIndex = 9;
             this.triangle2Btn.Text = "Work with Second Image";
             this.triangle2Btn.UseVisualStyleBackColor = true;
@@ -49,9 +49,9 @@
             // 
             // triangle1Btn
             // 
-            this.triangle1Btn.Location = new System.Drawing.Point(25, 501);
+            this.triangle1Btn.Location = new System.Drawing.Point(25, 622);
             this.triangle1Btn.Name = "triangle1Btn";
-            this.triangle1Btn.Size = new System.Drawing.Size(555, 50);
+            this.triangle1Btn.Size = new System.Drawing.Size(550, 50);
             this.triangle1Btn.TabIndex = 8;
             this.triangle1Btn.Text = "Work with First Image";
             this.triangle1Btn.UseVisualStyleBackColor = true;
@@ -59,9 +59,9 @@
             // 
             // saveImagesBtn
             // 
-            this.saveImagesBtn.Location = new System.Drawing.Point(25, 447);
+            this.saveImagesBtn.Location = new System.Drawing.Point(25, 568);
             this.saveImagesBtn.Name = "saveImagesBtn";
-            this.saveImagesBtn.Size = new System.Drawing.Size(1110, 50);
+            this.saveImagesBtn.Size = new System.Drawing.Size(1105, 50);
             this.saveImagesBtn.TabIndex = 7;
             this.saveImagesBtn.Text = "Save Images";
             this.saveImagesBtn.UseVisualStyleBackColor = true;
@@ -69,9 +69,9 @@
             // 
             // triangle2
             // 
-            this.triangle2.Location = new System.Drawing.Point(583, 12);
+            this.triangle2.Location = new System.Drawing.Point(580, 12);
             this.triangle2.Name = "triangle2";
-            this.triangle2.Size = new System.Drawing.Size(552, 426);
+            this.triangle2.Size = new System.Drawing.Size(550, 550);
             this.triangle2.TabIndex = 6;
             this.triangle2.TabStop = false;
             // 
@@ -79,7 +79,7 @@
             // 
             this.triangle1.Location = new System.Drawing.Point(25, 12);
             this.triangle1.Name = "triangle1";
-            this.triangle1.Size = new System.Drawing.Size(552, 426);
+            this.triangle1.Size = new System.Drawing.Size(550, 550);
             this.triangle1.TabIndex = 5;
             this.triangle1.TabStop = false;
             // 
@@ -87,7 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1161, 563);
+            this.ClientSize = new System.Drawing.Size(1162, 683);
             this.Controls.Add(this.triangle1);
             this.Controls.Add(this.triangle2Btn);
             this.Controls.Add(this.triangle1Btn);

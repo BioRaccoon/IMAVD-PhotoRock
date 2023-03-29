@@ -41,23 +41,23 @@
             // 
             this.square1.Location = new System.Drawing.Point(12, 12);
             this.square1.Name = "square1";
-            this.square1.Size = new System.Drawing.Size(552, 213);
+            this.square1.Size = new System.Drawing.Size(550, 275);
             this.square1.TabIndex = 0;
             this.square1.TabStop = false;
             this.square1.Click += new System.EventHandler(this.square1_Click);
             // 
             // square2
             // 
-            this.square2.Location = new System.Drawing.Point(12, 231);
+            this.square2.Location = new System.Drawing.Point(12, 293);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(552, 213);
+            this.square2.Size = new System.Drawing.Size(550, 275);
             this.square2.TabIndex = 1;
             this.square2.TabStop = false;
             this.square2.Click += new System.EventHandler(this.square2_Click);
             // 
             // saveImagesBtn
             // 
-            this.saveImagesBtn.Location = new System.Drawing.Point(12, 450);
+            this.saveImagesBtn.Location = new System.Drawing.Point(10, 574);
             this.saveImagesBtn.Name = "saveImagesBtn";
             this.saveImagesBtn.Size = new System.Drawing.Size(552, 50);
             this.saveImagesBtn.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // square1Btn
             // 
-            this.square1Btn.Location = new System.Drawing.Point(12, 504);
+            this.square1Btn.Location = new System.Drawing.Point(10, 628);
             this.square1Btn.Name = "square1Btn";
             this.square1Btn.Size = new System.Drawing.Size(276, 50);
             this.square1Btn.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // square2Btn
             // 
-            this.square2Btn.Location = new System.Drawing.Point(288, 504);
+            this.square2Btn.Location = new System.Drawing.Point(286, 628);
             this.square2Btn.Name = "square2Btn";
             this.square2Btn.Size = new System.Drawing.Size(276, 50);
             this.square2Btn.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 563);
+            this.ClientSize = new System.Drawing.Size(582, 683);
             this.Controls.Add(this.square2Btn);
             this.Controls.Add(this.square1Btn);
             this.Controls.Add(this.saveImagesBtn);

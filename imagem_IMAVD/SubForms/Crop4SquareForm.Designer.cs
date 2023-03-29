@@ -45,7 +45,7 @@
             // 
             // square2Btn
             // 
-            this.square2Btn.Location = new System.Drawing.Point(291, 502);
+            this.square2Btn.Location = new System.Drawing.Point(294, 626);
             this.square2Btn.Name = "square2Btn";
             this.square2Btn.Size = new System.Drawing.Size(276, 50);
             this.square2Btn.TabIndex = 9;
@@ -55,7 +55,7 @@
             // 
             // square1Btn
             // 
-            this.square1Btn.Location = new System.Drawing.Point(15, 502);
+            this.square1Btn.Location = new System.Drawing.Point(15, 626);
             this.square1Btn.Name = "square1Btn";
             this.square1Btn.Size = new System.Drawing.Size(276, 50);
             this.square1Btn.TabIndex = 8;
@@ -65,9 +65,9 @@
             // 
             // saveImagesBtn
             // 
-            this.saveImagesBtn.Location = new System.Drawing.Point(15, 448);
+            this.saveImagesBtn.Location = new System.Drawing.Point(15, 572);
             this.saveImagesBtn.Name = "saveImagesBtn";
-            this.saveImagesBtn.Size = new System.Drawing.Size(552, 50);
+            this.saveImagesBtn.Size = new System.Drawing.Size(556, 50);
             this.saveImagesBtn.TabIndex = 7;
             this.saveImagesBtn.Text = "Save Images";
             this.saveImagesBtn.UseVisualStyleBackColor = true;
@@ -77,37 +77,37 @@
             // 
             this.square1.Location = new System.Drawing.Point(15, 10);
             this.square1.Name = "square1";
-            this.square1.Size = new System.Drawing.Size(276, 213);
+            this.square1.Size = new System.Drawing.Size(275, 275);
             this.square1.TabIndex = 5;
             this.square1.TabStop = false;
             // 
             // square2
             // 
-            this.square2.Location = new System.Drawing.Point(297, 10);
+            this.square2.Location = new System.Drawing.Point(296, 10);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(276, 213);
+            this.square2.Size = new System.Drawing.Size(275, 275);
             this.square2.TabIndex = 10;
             this.square2.TabStop = false;
             // 
             // square3
             // 
-            this.square3.Location = new System.Drawing.Point(15, 229);
+            this.square3.Location = new System.Drawing.Point(15, 291);
             this.square3.Name = "square3";
-            this.square3.Size = new System.Drawing.Size(276, 213);
+            this.square3.Size = new System.Drawing.Size(275, 275);
             this.square3.TabIndex = 11;
             this.square3.TabStop = false;
             // 
             // square4
             // 
-            this.square4.Location = new System.Drawing.Point(297, 229);
+            this.square4.Location = new System.Drawing.Point(296, 291);
             this.square4.Name = "square4";
-            this.square4.Size = new System.Drawing.Size(276, 213);
+            this.square4.Size = new System.Drawing.Size(275, 275);
             this.square4.TabIndex = 12;
             this.square4.TabStop = false;
             // 
             // square3Btn
             // 
-            this.square3Btn.Location = new System.Drawing.Point(15, 558);
+            this.square3Btn.Location = new System.Drawing.Point(15, 682);
             this.square3Btn.Name = "square3Btn";
             this.square3Btn.Size = new System.Drawing.Size(276, 50);
             this.square3Btn.TabIndex = 13;
@@ -117,7 +117,7 @@
             // 
             // square4Btn
             // 
-            this.square4Btn.Location = new System.Drawing.Point(291, 558);
+            this.square4Btn.Location = new System.Drawing.Point(294, 682);
             this.square4Btn.Name = "square4Btn";
             this.square4Btn.Size = new System.Drawing.Size(276, 50);
             this.square4Btn.TabIndex = 14;
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 618);
+            this.ClientSize = new System.Drawing.Size(582, 743);
             this.Controls.Add(this.square4Btn);
             this.Controls.Add(this.square3Btn);
             this.Controls.Add(this.square4);

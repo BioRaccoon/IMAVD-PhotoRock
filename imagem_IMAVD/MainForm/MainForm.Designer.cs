@@ -339,7 +339,7 @@
             this.mainImageCopy.Margin = new System.Windows.Forms.Padding(4);
             this.mainImageCopy.Name = "mainImageCopy";
             this.mainImageCopy.Size = new System.Drawing.Size(550, 550);
-            this.mainImageCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.mainImageCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.mainImageCopy.TabIndex = 8;
             this.mainImageCopy.TabStop = false;
             // 
@@ -387,6 +387,7 @@
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainImageCopy)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
