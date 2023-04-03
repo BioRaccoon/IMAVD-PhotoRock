@@ -69,10 +69,6 @@ namespace PhotoRock
                 crop2Btn.Enabled = true;
                 crop4Btn.Enabled = true;
                 crop2TrianglesBtn.Enabled = true;
-
-                //MessageBox.Show("s - " + pictureBox1.Width + "\nt - " + pictureBox1.Height);
-
-                
             }
         }
 
