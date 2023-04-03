@@ -13,6 +13,7 @@ using imagem_IMAVD;
 using imagem_IMAVD.Utils;
 using static System.Net.Mime.MediaTypeNames;
 using Image = System.Drawing.Image;
+using imagem_IMAVD.SubForms;
 
 namespace PhotoRock
 {
@@ -474,6 +475,52 @@ namespace PhotoRock
 
             g.DrawImage(b, 0, 0, b.Width, b.Height);
             return returnBitmap;
+        }
+        private void gbcBtn_Click(object sender, EventArgs e)
+        {
+            gcbForm gcbForm = new gcbForm();
+            gcbForm.imageNow = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
+            DialogResult result = gcbForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                mainImage.Image = gcbForm.adjustedImage;
+                images.Add(mainImage.Image);
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Bitmap normalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
+            Bitmap invertedImage = new Bitmap(normalImage.Width, normalImage.Height);
+
+            for (int x = 0; x < normalImage.Width; x++)
+            {
+                for (int y = 0; y < normalImage.Height; y++)
+                {
+                    Color originalColor = normalImage.GetPixel(x, y);
+                    Color invertedColor = Color.FromArgb(
+                        255 - originalColor.R,
+                        255 - originalColor.G,
+                        255 - originalColor.B);
+
+                    invertedImage.SetPixel(x, y, invertedColor);
+                }
+            }
+            mainImage.Image = invertedImage;
+            images.Add(mainImage.Image);
+        }
+
+        private void chromaKey_Click(object sender, EventArgs e)
+        {
+            chromakey ck = new chromakey();
+            DialogResult result = ck.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                mainImage.Image = ck.finalImage;
+                images.Add(mainImage.Image);
+            }
         }
     }
 }

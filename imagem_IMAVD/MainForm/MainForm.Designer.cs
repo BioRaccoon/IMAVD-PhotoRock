@@ -56,11 +56,15 @@
             this.undoBtn = new System.Windows.Forms.Button();
             this.zoomComboBox = new System.Windows.Forms.ComboBox();
             this.zoomLbl = new System.Windows.Forms.Label();
+            this.chromakey = new System.Windows.Forms.Button();
+            this.gcb = new System.Windows.Forms.Button();
+            this.invertColor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainImage)).BeginInit();
             this.cropTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainImageCopy)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +82,7 @@
             // 
             // loadBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(582, 262);
+            this.loadBtn.Location = new System.Drawing.Point(582, 321);
             this.loadBtn.Margin = new System.Windows.Forms.Padding(2);
             this.loadBtn.Name = "loadBtn";
             this.loadBtn.Size = new System.Drawing.Size(172, 41);
@@ -89,7 +93,7 @@
             // 
             // propertiesBtn
             // 
-            this.propertiesBtn.Location = new System.Drawing.Point(582, 306);
+            this.propertiesBtn.Location = new System.Drawing.Point(582, 365);
             this.propertiesBtn.Margin = new System.Windows.Forms.Padding(2);
             this.propertiesBtn.Name = "propertiesBtn";
             this.propertiesBtn.Size = new System.Drawing.Size(345, 41);
@@ -130,7 +134,7 @@
             this.cropTab.Location = new System.Drawing.Point(574, 21);
             this.cropTab.Name = "cropTab";
             this.cropTab.SelectedIndex = 0;
-            this.cropTab.Size = new System.Drawing.Size(359, 236);
+            this.cropTab.Size = new System.Drawing.Size(359, 278);
             this.cropTab.TabIndex = 7;
             // 
             // tabPage1
@@ -143,7 +147,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(351, 210);
+            this.tabPage1.Size = new System.Drawing.Size(351, 252);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crop";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -253,6 +257,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.invertColor);
+            this.tabPage3.Controls.Add(this.gcb);
             this.tabPage3.Controls.Add(this.clearFilter);
             this.tabPage3.Controls.Add(this.blueFilter);
             this.tabPage3.Controls.Add(this.greenFilter);
@@ -260,7 +266,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(351, 210);
+            this.tabPage3.Size = new System.Drawing.Size(351, 252);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Adjustments";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -307,10 +313,11 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.chromakey);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(351, 210);
+            this.tabPage4.Size = new System.Drawing.Size(351, 252);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Search Color";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -336,7 +343,7 @@
             // 
             // saveImageBtn
             // 
-            this.saveImageBtn.Location = new System.Drawing.Point(755, 262);
+            this.saveImageBtn.Location = new System.Drawing.Point(755, 321);
             this.saveImageBtn.Margin = new System.Windows.Forms.Padding(2);
             this.saveImageBtn.Name = "saveImageBtn";
             this.saveImageBtn.Size = new System.Drawing.Size(172, 41);
@@ -347,7 +354,7 @@
             // 
             // undoBtn
             // 
-            this.undoBtn.Location = new System.Drawing.Point(582, 350);
+            this.undoBtn.Location = new System.Drawing.Point(582, 409);
             this.undoBtn.Margin = new System.Windows.Forms.Padding(2);
             this.undoBtn.Name = "undoBtn";
             this.undoBtn.Size = new System.Drawing.Size(345, 41);
@@ -360,7 +367,7 @@
             // 
             this.zoomComboBox.Enabled = false;
             this.zoomComboBox.FormattingEnabled = true;
-            this.zoomComboBox.Location = new System.Drawing.Point(805, 396);
+            this.zoomComboBox.Location = new System.Drawing.Point(805, 455);
             this.zoomComboBox.Name = "zoomComboBox";
             this.zoomComboBox.Size = new System.Drawing.Size(121, 21);
             this.zoomComboBox.TabIndex = 11;
@@ -369,11 +376,42 @@
             // zoomLbl
             // 
             this.zoomLbl.AutoSize = true;
-            this.zoomLbl.Location = new System.Drawing.Point(765, 399);
+            this.zoomLbl.Location = new System.Drawing.Point(765, 458);
             this.zoomLbl.Name = "zoomLbl";
             this.zoomLbl.Size = new System.Drawing.Size(34, 13);
             this.zoomLbl.TabIndex = 12;
             this.zoomLbl.Text = "Zoom";
+            // 
+            // chromakey
+            // 
+            this.chromakey.Location = new System.Drawing.Point(3, 5);
+            this.chromakey.Margin = new System.Windows.Forms.Padding(2);
+            this.chromakey.Name = "chromakey";
+            this.chromakey.Size = new System.Drawing.Size(345, 41);
+            this.chromakey.TabIndex = 10;
+            this.chromakey.Text = "Chroma Key";
+            this.chromakey.UseVisualStyleBackColor = true;
+            this.chromakey.Click += new System.EventHandler(this.chromaKey_Click);
+            // 
+            // gcb
+            // 
+            this.gcb.Location = new System.Drawing.Point(5, 167);
+            this.gcb.Name = "gcb";
+            this.gcb.Size = new System.Drawing.Size(345, 41);
+            this.gcb.TabIndex = 4;
+            this.gcb.Text = "Change gamma/contrast/brightness";
+            this.gcb.UseVisualStyleBackColor = true;
+            this.gcb.Click += new System.EventHandler(this.gbcBtn_Click);
+            // 
+            // invertColor
+            // 
+            this.invertColor.Location = new System.Drawing.Point(5, 208);
+            this.invertColor.Name = "invertColor";
+            this.invertColor.Size = new System.Drawing.Size(345, 41);
+            this.invertColor.TabIndex = 5;
+            this.invertColor.Text = "Invert Colors";
+            this.invertColor.UseVisualStyleBackColor = true;
+            this.invertColor.Click += new System.EventHandler(this.button6_Click);
             // 
             // MainForm
             // 
@@ -397,6 +435,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainImageCopy)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -433,5 +472,8 @@
         private System.Windows.Forms.Button undoBtn;
         private System.Windows.Forms.ComboBox zoomComboBox;
         private System.Windows.Forms.Label zoomLbl;
+        private System.Windows.Forms.Button invertColor;
+        private System.Windows.Forms.Button gcb;
+        private System.Windows.Forms.Button chromakey;
     }
 }

@@ -70,7 +70,7 @@ namespace imagem_IMAVD.SubForms
                     Color backgroundPixel = wChroma.GetPixel(x, y);
                     Color foregroundPixel = toReplace.GetPixel(x, y);
 
-                    if (ColorDistance(backgroundPixel, chromaKeyColor) <= 170)
+                    if (ColorDistance(backgroundPixel, chromaKeyColor) <= 300)
                     {
                         result.SetPixel(x, y, foregroundPixel);
                     }
