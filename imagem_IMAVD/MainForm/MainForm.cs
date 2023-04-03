@@ -24,6 +24,7 @@ namespace PhotoRock
         string filePath;
         Image img;
         Bitmap originalImage;
+        Bitmap unzoomedImg;
 
         int cropX;
         int cropY;
@@ -69,6 +70,31 @@ namespace PhotoRock
                 crop2Btn.Enabled = true;
                 crop4Btn.Enabled = true;
                 crop2TrianglesBtn.Enabled = true;
+
+                unzoomedImg = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
+
+                zoomComboBox.Enabled = true;
+                zoomComboBox.DropDownStyle= ComboBoxStyle.DropDownList;
+
+                string[] zooms =
+                {
+                    "50%",
+                    "100%",
+                    "150%",
+                    "200%",
+                    "300%",
+                    "400%",
+                    "500%"
+                };
+                zoomComboBox.Items.AddRange(zooms);
+
+                zoomComboBox.SelectedItem = zooms[1];
+
+                
+
+                //MessageBox.Show("s - " + pictureBox1.Width + "\nt - " + pictureBox1.Height);
+
+
             }
         }
 
@@ -413,5 +439,41 @@ namespace PhotoRock
             }
         }
 
+        private void zoomComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            float[] idx =
+            {
+                0.5f,
+                1f,
+                1.5f,
+                2f,
+                3f,
+                4f,
+                5f
+            };
+
+            float scIdx = idx[zoomComboBox.SelectedIndex];
+
+            Bitmap OriginalImage = new Bitmap(unzoomedImg, unzoomedImg.Width, unzoomedImg.Height);
+            Bitmap _img = zoomImage(OriginalImage, scIdx);
+            mainImage.Image = _img;
+        }
+
+        private Bitmap zoomImage(Bitmap b, float scIdx)
+        {
+            //Create a new empty bitmap to hold rotated image.
+            Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
+            //Make a graphics object from the empty bitmap.
+            Graphics g = Graphics.FromImage(returnBitmap);
+            //move rotation point to center of image.
+            //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            //g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+            //Rotate.        
+            g.ScaleTransform(scIdx, scIdx);
+
+            g.DrawImage(b, 0, 0, b.Width, b.Height);
+            return returnBitmap;
+        }
     }
 }
