@@ -45,9 +45,10 @@
             // 
             // square2Btn
             // 
-            this.square2Btn.Location = new System.Drawing.Point(294, 626);
+            this.square2Btn.Location = new System.Drawing.Point(239, 513);
+            this.square2Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square2Btn.Name = "square2Btn";
-            this.square2Btn.Size = new System.Drawing.Size(276, 50);
+            this.square2Btn.Size = new System.Drawing.Size(225, 41);
             this.square2Btn.TabIndex = 9;
             this.square2Btn.Text = "Work with Second Image";
             this.square2Btn.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@
             // 
             // square1Btn
             // 
-            this.square1Btn.Location = new System.Drawing.Point(15, 626);
+            this.square1Btn.Location = new System.Drawing.Point(10, 513);
+            this.square1Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square1Btn.Name = "square1Btn";
-            this.square1Btn.Size = new System.Drawing.Size(276, 50);
+            this.square1Btn.Size = new System.Drawing.Size(225, 41);
             this.square1Btn.TabIndex = 8;
             this.square1Btn.Text = "Work with First Image";
             this.square1Btn.UseVisualStyleBackColor = true;
@@ -65,9 +67,10 @@
             // 
             // saveImagesBtn
             // 
-            this.saveImagesBtn.Location = new System.Drawing.Point(15, 572);
+            this.saveImagesBtn.Location = new System.Drawing.Point(10, 469);
+            this.saveImagesBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.saveImagesBtn.Name = "saveImagesBtn";
-            this.saveImagesBtn.Size = new System.Drawing.Size(556, 50);
+            this.saveImagesBtn.Size = new System.Drawing.Size(455, 41);
             this.saveImagesBtn.TabIndex = 7;
             this.saveImagesBtn.Text = "Save Images";
             this.saveImagesBtn.UseVisualStyleBackColor = true;
@@ -75,41 +78,47 @@
             // 
             // square1
             // 
-            this.square1.Location = new System.Drawing.Point(15, 10);
+            this.square1.Location = new System.Drawing.Point(10, 10);
+            this.square1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square1.Name = "square1";
-            this.square1.Size = new System.Drawing.Size(275, 275);
+            this.square1.Size = new System.Drawing.Size(225, 225);
             this.square1.TabIndex = 5;
             this.square1.TabStop = false;
             // 
             // square2
             // 
-            this.square2.Location = new System.Drawing.Point(296, 10);
+            this.square2.Location = new System.Drawing.Point(240, 10);
+            this.square2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(275, 275);
+            this.square2.Size = new System.Drawing.Size(225, 225);
             this.square2.TabIndex = 10;
             this.square2.TabStop = false;
             // 
             // square3
             // 
-            this.square3.Location = new System.Drawing.Point(15, 291);
+            this.square3.Location = new System.Drawing.Point(10, 240);
+            this.square3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square3.Name = "square3";
-            this.square3.Size = new System.Drawing.Size(275, 275);
+            this.square3.Size = new System.Drawing.Size(225, 225);
             this.square3.TabIndex = 11;
             this.square3.TabStop = false;
             // 
             // square4
             // 
-            this.square4.Location = new System.Drawing.Point(296, 291);
+            this.square4.Location = new System.Drawing.Point(240, 240);
+            this.square4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square4.Name = "square4";
-            this.square4.Size = new System.Drawing.Size(275, 275);
+            this.square4.Size = new System.Drawing.Size(225, 225);
             this.square4.TabIndex = 12;
             this.square4.TabStop = false;
+            this.square4.Click += new System.EventHandler(this.square4_Click);
             // 
             // square3Btn
             // 
-            this.square3Btn.Location = new System.Drawing.Point(15, 682);
+            this.square3Btn.Location = new System.Drawing.Point(10, 558);
+            this.square3Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square3Btn.Name = "square3Btn";
-            this.square3Btn.Size = new System.Drawing.Size(276, 50);
+            this.square3Btn.Size = new System.Drawing.Size(225, 41);
             this.square3Btn.TabIndex = 13;
             this.square3Btn.Text = "Work with Third Image";
             this.square3Btn.UseVisualStyleBackColor = true;
@@ -117,9 +126,10 @@
             // 
             // square4Btn
             // 
-            this.square4Btn.Location = new System.Drawing.Point(294, 682);
+            this.square4Btn.Location = new System.Drawing.Point(239, 558);
+            this.square4Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.square4Btn.Name = "square4Btn";
-            this.square4Btn.Size = new System.Drawing.Size(276, 50);
+            this.square4Btn.Size = new System.Drawing.Size(225, 41);
             this.square4Btn.TabIndex = 14;
             this.square4Btn.Text = "Work with Fourth Image";
             this.square4Btn.UseVisualStyleBackColor = true;
@@ -127,9 +137,9 @@
             // 
             // Crop4SquareForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 743);
+            this.ClientSize = new System.Drawing.Size(477, 604);
             this.Controls.Add(this.square4Btn);
             this.Controls.Add(this.square3Btn);
             this.Controls.Add(this.square4);
@@ -139,6 +149,7 @@
             this.Controls.Add(this.square1Btn);
             this.Controls.Add(this.saveImagesBtn);
             this.Controls.Add(this.square1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Crop4SquareForm";
             this.Text = "Crop4Form";
             this.Load += new System.EventHandler(this.Crop4SquareForm_Load);

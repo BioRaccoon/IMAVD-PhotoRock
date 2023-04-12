@@ -118,5 +118,9 @@ namespace imagem_IMAVD
             Close();
         }
 
+        private void square4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

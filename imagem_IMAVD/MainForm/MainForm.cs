@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using imagem_IMAVD;
 using imagem_IMAVD.Utils;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection.Emit;
 
 namespace PhotoRock
 {
@@ -67,9 +69,6 @@ namespace PhotoRock
                 crop4Btn.Enabled = true;
                 crop2TrianglesBtn.Enabled = true;
 
-                //MessageBox.Show("s - " + pictureBox1.Width + "\nt - " + pictureBox1.Height);
-
-                
             }
         }
 
@@ -196,6 +195,8 @@ namespace PhotoRock
             {
                 return;
             }
+
+            MessageBox.Show("Picture Box - " + mainImage.Width + "," + mainImage.Height);
 
             Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = Rotate45(OriginalImage, tilted);
@@ -348,9 +349,9 @@ namespace PhotoRock
                     Color newColor = Color.FromArgb(pixelColor.R, 0, 0);
                     filteredImage.SetPixel(x, y, newColor);
                     mainImage.Image = filteredImage;
-                    imageHasFilter=true;
                 }
             }
+            imageHasFilter = true;
         }
 
         private void greenFilter_Click(object sender, EventArgs e)
@@ -364,10 +365,9 @@ namespace PhotoRock
                     Color newColor = Color.FromArgb(0, pixelColor.G, 0);
                     filteredImage.SetPixel(x, y, newColor);
                     mainImage.Image = filteredImage;
-                    imageHasFilter = true;
                 }
             }
-
+            imageHasFilter = true;
         }
 
         private void blueFilter_Click(object sender, EventArgs e)
@@ -381,9 +381,10 @@ namespace PhotoRock
                     Color newColor = Color.FromArgb(0, 0, pixelColor.B);
                     filteredImage.SetPixel(x, y, newColor);
                     mainImage.Image = filteredImage;
-                    imageHasFilter = true;
+                    
                 }
             }
+            imageHasFilter = true;
         }
 
         private void clearFilter_Click(object sender, EventArgs e)
@@ -400,5 +401,57 @@ namespace PhotoRock
 
         }
 
+        private void colorPickerBtn_Click(object sender, EventArgs e)
+        {
+            ColorDialog color = new ColorDialog();
+            color.FullOpen = true;
+            if (color.ShowDialog() == DialogResult.OK)
+            {
+                selectedColorBox.BackColor = color.Color;
+            }
+
+
+
+        }
+
+        private void searchColorBtn_Click(object sender, EventArgs e)
+        {
+            Boolean IsColorFound = false;
+            if (mainImage.Image != null)
+            {
+                //Converting loaded image into bitmap
+                Bitmap bmp = new Bitmap(mainImage.Image);
+
+                //Iterate whole bitmap to findout the picked color
+                for (int i = 0; i < mainImage.Image.Height; i++)
+                {
+                    for (int j = 0; j < mainImage.Image.Width; j++)
+                    {
+                        //Get the color at each pixel
+                        Color now_color = bmp.GetPixel(j, i);
+
+                        //Compare Pixel's Color ARGB property with the picked color's ARGB property
+                        if (now_color.ToArgb() == selectedColorBox.BackColor.ToArgb())
+                        {
+                            IsColorFound = true;
+                            MessageBox.Show("Color Found!");
+                            break;
+                        }
+                    }
+                    if (IsColorFound == true)
+                    {
+                        break;
+                    }
+                }
+                if (IsColorFound == false)
+                {
+                    MessageBox.Show("Selected Color Not Found.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Image is not loaded");
+            }
+        }
     }
 }

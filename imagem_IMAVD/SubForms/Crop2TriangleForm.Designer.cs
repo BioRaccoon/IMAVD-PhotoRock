@@ -39,9 +39,10 @@
             // 
             // triangle2Btn
             // 
-            this.triangle2Btn.Location = new System.Drawing.Point(580, 622);
+            this.triangle2Btn.Location = new System.Drawing.Point(464, 509);
+            this.triangle2Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.triangle2Btn.Name = "triangle2Btn";
-            this.triangle2Btn.Size = new System.Drawing.Size(550, 50);
+            this.triangle2Btn.Size = new System.Drawing.Size(450, 41);
             this.triangle2Btn.TabIndex = 9;
             this.triangle2Btn.Text = "Work with Second Image";
             this.triangle2Btn.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@
             // 
             // triangle1Btn
             // 
-            this.triangle1Btn.Location = new System.Drawing.Point(25, 622);
+            this.triangle1Btn.Location = new System.Drawing.Point(11, 509);
+            this.triangle1Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.triangle1Btn.Name = "triangle1Btn";
-            this.triangle1Btn.Size = new System.Drawing.Size(550, 50);
+            this.triangle1Btn.Size = new System.Drawing.Size(450, 41);
             this.triangle1Btn.TabIndex = 8;
             this.triangle1Btn.Text = "Work with First Image";
             this.triangle1Btn.UseVisualStyleBackColor = true;
@@ -59,9 +61,10 @@
             // 
             // saveImagesBtn
             // 
-            this.saveImagesBtn.Location = new System.Drawing.Point(25, 568);
+            this.saveImagesBtn.Location = new System.Drawing.Point(10, 464);
+            this.saveImagesBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.saveImagesBtn.Name = "saveImagesBtn";
-            this.saveImagesBtn.Size = new System.Drawing.Size(1105, 50);
+            this.saveImagesBtn.Size = new System.Drawing.Size(904, 41);
             this.saveImagesBtn.TabIndex = 7;
             this.saveImagesBtn.Text = "Save Images";
             this.saveImagesBtn.UseVisualStyleBackColor = true;
@@ -69,30 +72,33 @@
             // 
             // triangle2
             // 
-            this.triangle2.Location = new System.Drawing.Point(580, 12);
+            this.triangle2.Location = new System.Drawing.Point(464, 10);
+            this.triangle2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.triangle2.Name = "triangle2";
-            this.triangle2.Size = new System.Drawing.Size(550, 550);
+            this.triangle2.Size = new System.Drawing.Size(450, 450);
             this.triangle2.TabIndex = 6;
             this.triangle2.TabStop = false;
             // 
             // triangle1
             // 
-            this.triangle1.Location = new System.Drawing.Point(25, 12);
+            this.triangle1.Location = new System.Drawing.Point(10, 10);
+            this.triangle1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.triangle1.Name = "triangle1";
-            this.triangle1.Size = new System.Drawing.Size(550, 550);
+            this.triangle1.Size = new System.Drawing.Size(450, 450);
             this.triangle1.TabIndex = 5;
             this.triangle1.TabStop = false;
             // 
             // Crop2TriangleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1162, 683);
+            this.ClientSize = new System.Drawing.Size(926, 555);
             this.Controls.Add(this.triangle1);
             this.Controls.Add(this.triangle2Btn);
             this.Controls.Add(this.triangle1Btn);
             this.Controls.Add(this.saveImagesBtn);
             this.Controls.Add(this.triangle2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Crop2TriangleForm";
             this.Text = "Crop2TriangleForm";
             this.Load += new System.EventHandler(this.Crop2TriangleForm_Load);
