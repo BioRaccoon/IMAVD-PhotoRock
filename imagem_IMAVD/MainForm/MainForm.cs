@@ -11,6 +11,9 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using imagem_IMAVD;
 using imagem_IMAVD.Utils;
+using static System.Net.Mime.MediaTypeNames;
+using Image = System.Drawing.Image;
+using imagem_IMAVD.SubForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Reflection.Emit;
 
@@ -24,6 +27,7 @@ namespace PhotoRock
         string filePath;
         Image img;
         Bitmap originalImage;
+        Bitmap unzoomedImg;
 
         int cropX;
         int cropY;
@@ -32,7 +36,7 @@ namespace PhotoRock
         public Pen cropPen;
         public DashStyle cropDashStyle = DashStyle.DashDot;
         private bool cropEnabled;
-
+        public List<Image> images = new List<Image>();
         public MainForm()
         {
             InitializeComponent();
@@ -63,11 +67,36 @@ namespace PhotoRock
                 mainImageCopy.Image = Image.FromFile(filePath);
                 img = Image.FromFile(filePath);
                 imageIsSelected = true;
+                images.Add(img);
 
                 selectCropAreaBtn.Enabled = true;
                 crop2Btn.Enabled = true;
                 crop4Btn.Enabled = true;
                 crop2TrianglesBtn.Enabled = true;
+
+                unzoomedImg = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
+
+                zoomComboBox.Enabled = true;
+                zoomComboBox.DropDownStyle= ComboBoxStyle.DropDownList;
+
+                string[] zooms =
+                {
+                    "50%",
+                    "100%",
+                    "150%",
+                    "200%",
+                    "300%",
+                    "400%",
+                    "500%"
+                };
+                zoomComboBox.Items.AddRange(zooms);
+
+                zoomComboBox.SelectedItem = zooms[1];
+
+                
+
+                //MessageBox.Show("s - " + pictureBox1.Width + "\nt - " + pictureBox1.Height);
+
 
             }
         }
@@ -148,6 +177,8 @@ namespace PhotoRock
                 crop2Btn.Enabled = true;
                 crop4Btn.Enabled = true;
                 crop2TrianglesBtn.Enabled = true;
+                images.Add(mainImage.Image);
+
             }
         }
 
@@ -184,6 +215,7 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = crop2SquareForm.newImageToWork;
+                images.Add(mainImage.Image);
                 //pictureBox1.Width = crop2SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2SquareForm.newImageToWork.Height;
             }
@@ -213,6 +245,7 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = crop4SquareForm.newImageToWork;
+                images.Add(mainImage.Image);
                 //pictureBox1.Width = crop4SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop4SquareForm.newImageToWork.Height;
             }
@@ -227,6 +260,7 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = crop2TriangleForm.newImageToWork;
+                images.Add(mainImage.Image);
                 //pictureBox1.Width = crop2TriangleForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2TriangleForm.newImageToWork.Height;
             }
@@ -351,6 +385,7 @@ namespace PhotoRock
                     mainImage.Image = filteredImage;
                 }
             }
+            images.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
@@ -367,6 +402,7 @@ namespace PhotoRock
                     mainImage.Image = filteredImage;
                 }
             }
+            images.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
@@ -384,6 +420,7 @@ namespace PhotoRock
                     
                 }
             }
+            images.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
@@ -398,6 +435,63 @@ namespace PhotoRock
 
         private void undoBtn_Click(object sender, EventArgs e)
         {
+            if (images.Count > 1) {
+                mainImage.Image = images[images.Count - 2];
+                images.RemoveAt(images.Count - 1);
+            }
+            else
+            {
+                MessageBox.Show("si fodeu");
+            }
+        }
+
+        private void zoomComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            float[] idx =
+            {
+                0.5f,
+                1f,
+                1.5f,
+                2f,
+                3f,
+                4f,
+                5f
+            };
+
+            float scIdx = idx[zoomComboBox.SelectedIndex];
+
+            Bitmap OriginalImage = new Bitmap(unzoomedImg, unzoomedImg.Width, unzoomedImg.Height);
+            Bitmap _img = zoomImage(OriginalImage, scIdx);
+            mainImage.Image = _img;
+        }
+
+        private Bitmap zoomImage(Bitmap b, float scIdx)
+        {
+            //Create a new empty bitmap to hold rotated image.
+            Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
+            //Make a graphics object from the empty bitmap.
+            Graphics g = Graphics.FromImage(returnBitmap);
+            //move rotation point to center of image.
+            //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            //g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+            //Rotate.        
+            g.ScaleTransform(scIdx, scIdx);
+
+            g.DrawImage(b, 0, 0, b.Width, b.Height);
+            return returnBitmap;
+        }
+        private void gbcBtn_Click(object sender, EventArgs e)
+        {
+            gcbForm gcbForm = new gcbForm();
+            gcbForm.imageNow = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
+            DialogResult result = gcbForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                mainImage.Image = gcbForm.adjustedImage;
+                images.Add(mainImage.Image);
+            }
 
         }
 
@@ -409,11 +503,41 @@ namespace PhotoRock
             {
                 selectedColorBox.BackColor = color.Color;
             }
-
-
-
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Bitmap normalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
+            Bitmap invertedImage = new Bitmap(normalImage.Width, normalImage.Height);
+
+            for (int x = 0; x < normalImage.Width; x++)
+            {
+                for (int y = 0; y < normalImage.Height; y++)
+                {
+                    Color originalColor = normalImage.GetPixel(x, y);
+                    Color invertedColor = Color.FromArgb(
+                        255 - originalColor.R,
+                        255 - originalColor.G,
+                        255 - originalColor.B);
+
+                    invertedImage.SetPixel(x, y, invertedColor);
+                }
+            }
+            mainImage.Image = invertedImage;
+            images.Add(mainImage.Image);
+        }
+
+        private void chromaKey_Click(object sender, EventArgs e)
+        {
+            chromakey ck = new chromakey();
+            DialogResult result = ck.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                mainImage.Image = ck.finalImage;
+                images.Add(mainImage.Image);
+            }
+        }
         private void searchColorBtn_Click(object sender, EventArgs e)
         {
             Boolean IsColorFound = false;
