@@ -49,5 +49,16 @@ namespace imagem_IMAVD.Utils
                 fs.Close();
             }
         }
+
+        public static Image Resize(Image image, Size newSize)
+        {
+            Bitmap resizedImage = new Bitmap(newSize.Width, newSize.Height);
+            using (Graphics graphics = Graphics.FromImage(resizedImage))
+            {
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(image, new Rectangle(Point.Empty, newSize));
+            }
+            return resizedImage;
+        }
     }
 }

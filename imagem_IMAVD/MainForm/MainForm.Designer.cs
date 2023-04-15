@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.mainImage = new System.Windows.Forms.PictureBox();
-            this.loadBtn = new System.Windows.Forms.Button();
-            this.propertiesBtn = new System.Windows.Forms.Button();
+            this.loadImageBtn = new System.Windows.Forms.Button();
+            this.imageDetailsBtn = new System.Windows.Forms.Button();
             this.selectCropAreaBtn = new System.Windows.Forms.Button();
             this.cropBtn = new System.Windows.Forms.Button();
             this.cropTab = new System.Windows.Forms.TabControl();
@@ -39,11 +39,11 @@
             this.crop4Btn = new System.Windows.Forms.Button();
             this.crop2Btn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.rotate180Btn = new System.Windows.Forms.Button();
+            this.rotate90Btn = new System.Windows.Forms.Button();
+            this.flipVerticalBtn = new System.Windows.Forms.Button();
+            this.flipHorizontalBtn = new System.Windows.Forms.Button();
+            this.rotate45Btn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.invertColor = new System.Windows.Forms.Button();
             this.gcb = new System.Windows.Forms.Button();
@@ -52,10 +52,11 @@
             this.greenFilter = new System.Windows.Forms.Button();
             this.redFilter = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.colorMousePickerBtn = new System.Windows.Forms.Button();
+            this.colorPixelsNumberLabel = new System.Windows.Forms.Label();
             this.searchColorBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.selectedColorBox = new System.Windows.Forms.TextBox();
-            this.colorPickerBtn = new System.Windows.Forms.Button();
+            this.colorPalettePickerBtn = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.chromakey = new System.Windows.Forms.Button();
             this.mainImageCopy = new System.Windows.Forms.PictureBox();
@@ -63,6 +64,7 @@
             this.undoBtn = new System.Windows.Forms.Button();
             this.zoomComboBox = new System.Windows.Forms.ComboBox();
             this.zoomLbl = new System.Windows.Forms.Label();
+            this.selectedColorBox = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainImage)).BeginInit();
             this.cropTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -85,34 +87,34 @@
             this.mainImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.mainImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
-            // loadBtn
+            // loadImageBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(473, 252);
-            this.loadBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.loadBtn.Name = "loadBtn";
-            this.loadBtn.Size = new System.Drawing.Size(172, 41);
-            this.loadBtn.TabIndex = 1;
-            this.loadBtn.Text = "Load Image";
-            this.loadBtn.UseVisualStyleBackColor = true;
-            this.loadBtn.Click += new System.EventHandler(this.loadBtn_Click);
+            this.loadImageBtn.Location = new System.Drawing.Point(473, 252);
+            this.loadImageBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.loadImageBtn.Name = "loadImageBtn";
+            this.loadImageBtn.Size = new System.Drawing.Size(172, 40);
+            this.loadImageBtn.TabIndex = 1;
+            this.loadImageBtn.Text = "Load Image";
+            this.loadImageBtn.UseVisualStyleBackColor = true;
+            this.loadImageBtn.Click += new System.EventHandler(this.loadBtn_Click);
             // 
-            // propertiesBtn
+            // imageDetailsBtn
             // 
-            this.propertiesBtn.Location = new System.Drawing.Point(473, 296);
-            this.propertiesBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.propertiesBtn.Name = "propertiesBtn";
-            this.propertiesBtn.Size = new System.Drawing.Size(345, 41);
-            this.propertiesBtn.TabIndex = 2;
-            this.propertiesBtn.Text = "Show Details";
-            this.propertiesBtn.UseVisualStyleBackColor = true;
-            this.propertiesBtn.Click += new System.EventHandler(this.propertiesBtn_Click);
+            this.imageDetailsBtn.Location = new System.Drawing.Point(473, 296);
+            this.imageDetailsBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.imageDetailsBtn.Name = "imageDetailsBtn";
+            this.imageDetailsBtn.Size = new System.Drawing.Size(345, 40);
+            this.imageDetailsBtn.TabIndex = 2;
+            this.imageDetailsBtn.Text = "Show Details";
+            this.imageDetailsBtn.UseVisualStyleBackColor = true;
+            this.imageDetailsBtn.Click += new System.EventHandler(this.propertiesBtn_Click);
             // 
             // selectCropAreaBtn
             // 
             this.selectCropAreaBtn.Location = new System.Drawing.Point(4, 4);
             this.selectCropAreaBtn.Margin = new System.Windows.Forms.Padding(2);
             this.selectCropAreaBtn.Name = "selectCropAreaBtn";
-            this.selectCropAreaBtn.Size = new System.Drawing.Size(345, 41);
+            this.selectCropAreaBtn.Size = new System.Drawing.Size(345, 40);
             this.selectCropAreaBtn.TabIndex = 5;
             this.selectCropAreaBtn.Text = "Select Area";
             this.selectCropAreaBtn.UseVisualStyleBackColor = true;
@@ -123,7 +125,7 @@
             this.cropBtn.Location = new System.Drawing.Point(4, 45);
             this.cropBtn.Margin = new System.Windows.Forms.Padding(2);
             this.cropBtn.Name = "cropBtn";
-            this.cropBtn.Size = new System.Drawing.Size(345, 41);
+            this.cropBtn.Size = new System.Drawing.Size(345, 40);
             this.cropBtn.TabIndex = 6;
             this.cropBtn.Text = "Crop";
             this.cropBtn.UseVisualStyleBackColor = true;
@@ -162,7 +164,7 @@
             this.crop2TrianglesBtn.Location = new System.Drawing.Point(4, 167);
             this.crop2TrianglesBtn.Margin = new System.Windows.Forms.Padding(2);
             this.crop2TrianglesBtn.Name = "crop2TrianglesBtn";
-            this.crop2TrianglesBtn.Size = new System.Drawing.Size(345, 41);
+            this.crop2TrianglesBtn.Size = new System.Drawing.Size(345, 40);
             this.crop2TrianglesBtn.TabIndex = 9;
             this.crop2TrianglesBtn.Text = "Crop (2 Triangles)";
             this.crop2TrianglesBtn.UseVisualStyleBackColor = true;
@@ -173,7 +175,7 @@
             this.crop4Btn.Location = new System.Drawing.Point(4, 126);
             this.crop4Btn.Margin = new System.Windows.Forms.Padding(2);
             this.crop4Btn.Name = "crop4Btn";
-            this.crop4Btn.Size = new System.Drawing.Size(345, 41);
+            this.crop4Btn.Size = new System.Drawing.Size(345, 40);
             this.crop4Btn.TabIndex = 8;
             this.crop4Btn.Text = "Crop (4 Squares)";
             this.crop4Btn.UseVisualStyleBackColor = true;
@@ -184,7 +186,7 @@
             this.crop2Btn.Location = new System.Drawing.Point(4, 85);
             this.crop2Btn.Margin = new System.Windows.Forms.Padding(2);
             this.crop2Btn.Name = "crop2Btn";
-            this.crop2Btn.Size = new System.Drawing.Size(345, 41);
+            this.crop2Btn.Size = new System.Drawing.Size(345, 40);
             this.crop2Btn.TabIndex = 7;
             this.crop2Btn.Text = "Crop (2 Squares)";
             this.crop2Btn.UseVisualStyleBackColor = true;
@@ -192,11 +194,11 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button5);
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.rotate180Btn);
+            this.tabPage2.Controls.Add(this.rotate90Btn);
+            this.tabPage2.Controls.Add(this.flipVerticalBtn);
+            this.tabPage2.Controls.Add(this.flipHorizontalBtn);
+            this.tabPage2.Controls.Add(this.rotate45Btn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -205,60 +207,60 @@
             this.tabPage2.Text = "Rotate & Flip";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // rotate180Btn
             // 
-            this.button5.Location = new System.Drawing.Point(4, 85);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(345, 41);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Rotate 180º";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.rotate180Btn_Click);
+            this.rotate180Btn.Location = new System.Drawing.Point(4, 85);
+            this.rotate180Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.rotate180Btn.Name = "rotate180Btn";
+            this.rotate180Btn.Size = new System.Drawing.Size(345, 40);
+            this.rotate180Btn.TabIndex = 4;
+            this.rotate180Btn.Text = "Rotate 180º";
+            this.rotate180Btn.UseVisualStyleBackColor = true;
+            this.rotate180Btn.Click += new System.EventHandler(this.rotate180Btn_Click);
             // 
-            // button4
+            // rotate90Btn
             // 
-            this.button4.Location = new System.Drawing.Point(3, 45);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(345, 41);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Rotate 90º";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.rotate90Btn_Click);
+            this.rotate90Btn.Location = new System.Drawing.Point(3, 45);
+            this.rotate90Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.rotate90Btn.Name = "rotate90Btn";
+            this.rotate90Btn.Size = new System.Drawing.Size(345, 40);
+            this.rotate90Btn.TabIndex = 3;
+            this.rotate90Btn.Text = "Rotate 90º";
+            this.rotate90Btn.UseVisualStyleBackColor = true;
+            this.rotate90Btn.Click += new System.EventHandler(this.rotate90Btn_Click);
             // 
-            // button3
+            // flipVerticalBtn
             // 
-            this.button3.Location = new System.Drawing.Point(4, 167);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(345, 41);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Flip Vertically";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.flipVBtn_Click);
+            this.flipVerticalBtn.Location = new System.Drawing.Point(4, 167);
+            this.flipVerticalBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.flipVerticalBtn.Name = "flipVerticalBtn";
+            this.flipVerticalBtn.Size = new System.Drawing.Size(345, 40);
+            this.flipVerticalBtn.TabIndex = 2;
+            this.flipVerticalBtn.Text = "Flip Vertically";
+            this.flipVerticalBtn.UseVisualStyleBackColor = true;
+            this.flipVerticalBtn.Click += new System.EventHandler(this.flipVBtn_Click);
             // 
-            // button2
+            // flipHorizontalBtn
             // 
-            this.button2.Location = new System.Drawing.Point(4, 126);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(345, 41);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Flip Horizontally";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.flipHBtn_Click);
+            this.flipHorizontalBtn.Location = new System.Drawing.Point(4, 126);
+            this.flipHorizontalBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.flipHorizontalBtn.Name = "flipHorizontalBtn";
+            this.flipHorizontalBtn.Size = new System.Drawing.Size(345, 40);
+            this.flipHorizontalBtn.TabIndex = 1;
+            this.flipHorizontalBtn.Text = "Flip Horizontally";
+            this.flipHorizontalBtn.UseVisualStyleBackColor = true;
+            this.flipHorizontalBtn.Click += new System.EventHandler(this.flipHBtn_Click);
             // 
-            // button1
+            // rotate45Btn
             // 
-            this.button1.Location = new System.Drawing.Point(4, 4);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(345, 41);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Rotate 45º";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.rotate45Btn_Click);
+            this.rotate45Btn.Location = new System.Drawing.Point(4, 4);
+            this.rotate45Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.rotate45Btn.Name = "rotate45Btn";
+            this.rotate45Btn.Size = new System.Drawing.Size(345, 40);
+            this.rotate45Btn.TabIndex = 0;
+            this.rotate45Btn.Text = "Rotate 45º";
+            this.rotate45Btn.UseVisualStyleBackColor = true;
+            this.rotate45Btn.Click += new System.EventHandler(this.rotate45Btn_Click);
             // 
             // tabPage3
             // 
@@ -290,7 +292,7 @@
             // 
             this.gcb.Location = new System.Drawing.Point(5, 167);
             this.gcb.Name = "gcb";
-            this.gcb.Size = new System.Drawing.Size(345, 41);
+            this.gcb.Size = new System.Drawing.Size(345, 40);
             this.gcb.TabIndex = 4;
             this.gcb.Text = "Change gamma/contrast/brightness";
             this.gcb.UseVisualStyleBackColor = true;
@@ -300,7 +302,7 @@
             // 
             this.clearFilter.Location = new System.Drawing.Point(4, 126);
             this.clearFilter.Name = "clearFilter";
-            this.clearFilter.Size = new System.Drawing.Size(345, 41);
+            this.clearFilter.Size = new System.Drawing.Size(345, 40);
             this.clearFilter.TabIndex = 3;
             this.clearFilter.Text = "Clear Filter";
             this.clearFilter.UseVisualStyleBackColor = true;
@@ -310,7 +312,7 @@
             // 
             this.blueFilter.Location = new System.Drawing.Point(4, 85);
             this.blueFilter.Name = "blueFilter";
-            this.blueFilter.Size = new System.Drawing.Size(345, 41);
+            this.blueFilter.Size = new System.Drawing.Size(345, 40);
             this.blueFilter.TabIndex = 2;
             this.blueFilter.Text = "Blue Filter";
             this.blueFilter.UseVisualStyleBackColor = true;
@@ -320,7 +322,7 @@
             // 
             this.greenFilter.Location = new System.Drawing.Point(4, 45);
             this.greenFilter.Name = "greenFilter";
-            this.greenFilter.Size = new System.Drawing.Size(345, 41);
+            this.greenFilter.Size = new System.Drawing.Size(345, 40);
             this.greenFilter.TabIndex = 1;
             this.greenFilter.Text = "Green Filter";
             this.greenFilter.UseVisualStyleBackColor = true;
@@ -330,7 +332,7 @@
             // 
             this.redFilter.Location = new System.Drawing.Point(4, 4);
             this.redFilter.Name = "redFilter";
-            this.redFilter.Size = new System.Drawing.Size(345, 41);
+            this.redFilter.Size = new System.Drawing.Size(345, 40);
             this.redFilter.TabIndex = 0;
             this.redFilter.Text = "Red Filter";
             this.redFilter.UseVisualStyleBackColor = true;
@@ -338,10 +340,12 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.selectedColorBox);
+            this.tabPage5.Controls.Add(this.colorMousePickerBtn);
+            this.tabPage5.Controls.Add(this.colorPixelsNumberLabel);
             this.tabPage5.Controls.Add(this.searchColorBtn);
             this.tabPage5.Controls.Add(this.label1);
-            this.tabPage5.Controls.Add(this.selectedColorBox);
-            this.tabPage5.Controls.Add(this.colorPickerBtn);
+            this.tabPage5.Controls.Add(this.colorPalettePickerBtn);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -350,9 +354,29 @@
             this.tabPage5.Text = "Color Picker";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // colorMousePickerBtn
+            // 
+            this.colorMousePickerBtn.Location = new System.Drawing.Point(5, 45);
+            this.colorMousePickerBtn.Name = "colorMousePickerBtn";
+            this.colorMousePickerBtn.Size = new System.Drawing.Size(340, 40);
+            this.colorMousePickerBtn.TabIndex = 9;
+            this.colorMousePickerBtn.Text = "Pick Color (With Mouse)";
+            this.colorMousePickerBtn.UseVisualStyleBackColor = true;
+            this.colorMousePickerBtn.Click += new System.EventHandler(this.colorMousePickerBtn_Click);
+            // 
+            // colorPixelsNumberLabel
+            // 
+            this.colorPixelsNumberLabel.AutoSize = true;
+            this.colorPixelsNumberLabel.Location = new System.Drawing.Point(55, 166);
+            this.colorPixelsNumberLabel.Name = "colorPixelsNumberLabel";
+            this.colorPixelsNumberLabel.Size = new System.Drawing.Size(237, 26);
+            this.colorPixelsNumberLabel.TabIndex = 8;
+            this.colorPixelsNumberLabel.Text = "Color Found! \r\nThe image contains 0 pixels of the selected color";
+            this.colorPixelsNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // searchColorBtn
             // 
-            this.searchColorBtn.Location = new System.Drawing.Point(5, 75);
+            this.searchColorBtn.Location = new System.Drawing.Point(5, 116);
             this.searchColorBtn.Name = "searchColorBtn";
             this.searchColorBtn.Size = new System.Drawing.Size(340, 40);
             this.searchColorBtn.TabIndex = 7;
@@ -363,30 +387,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 55);
+            this.label1.Location = new System.Drawing.Point(5, 96);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Selected Color:";
             // 
-            // selectedColorBox
+            // colorPalettePickerBtn
             // 
-            this.selectedColorBox.Location = new System.Drawing.Point(86, 51);
-            this.selectedColorBox.Margin = new System.Windows.Forms.Padding(2);
-            this.selectedColorBox.Name = "selectedColorBox";
-            this.selectedColorBox.Size = new System.Drawing.Size(255, 20);
-            this.selectedColorBox.TabIndex = 5;
-            // 
-            // colorPickerBtn
-            // 
-            this.colorPickerBtn.Location = new System.Drawing.Point(5, 5);
-            this.colorPickerBtn.Name = "colorPickerBtn";
-            this.colorPickerBtn.Size = new System.Drawing.Size(340, 40);
-            this.colorPickerBtn.TabIndex = 4;
-            this.colorPickerBtn.Text = "Pick Color";
-            this.colorPickerBtn.UseVisualStyleBackColor = true;
-            this.colorPickerBtn.Click += new System.EventHandler(this.colorPickerBtn_Click);
+            this.colorPalettePickerBtn.Location = new System.Drawing.Point(5, 5);
+            this.colorPalettePickerBtn.Name = "colorPalettePickerBtn";
+            this.colorPalettePickerBtn.Size = new System.Drawing.Size(340, 40);
+            this.colorPalettePickerBtn.TabIndex = 4;
+            this.colorPalettePickerBtn.Text = "Pick Color (With Palette)";
+            this.colorPalettePickerBtn.UseVisualStyleBackColor = true;
+            this.colorPalettePickerBtn.Click += new System.EventHandler(this.colorPalettePickerBtn_Click);
             // 
             // tabPage4
             // 
@@ -396,6 +412,7 @@
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(351, 210);
             this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Extra";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // chromakey
@@ -423,7 +440,7 @@
             this.saveImageBtn.Location = new System.Drawing.Point(646, 252);
             this.saveImageBtn.Margin = new System.Windows.Forms.Padding(2);
             this.saveImageBtn.Name = "saveImageBtn";
-            this.saveImageBtn.Size = new System.Drawing.Size(172, 41);
+            this.saveImageBtn.Size = new System.Drawing.Size(172, 40);
             this.saveImageBtn.TabIndex = 9;
             this.saveImageBtn.Text = "Save Image";
             this.saveImageBtn.UseVisualStyleBackColor = true;
@@ -434,7 +451,7 @@
             this.undoBtn.Location = new System.Drawing.Point(473, 340);
             this.undoBtn.Margin = new System.Windows.Forms.Padding(2);
             this.undoBtn.Name = "undoBtn";
-            this.undoBtn.Size = new System.Drawing.Size(345, 41);
+            this.undoBtn.Size = new System.Drawing.Size(345, 40);
             this.undoBtn.TabIndex = 10;
             this.undoBtn.Text = "Undo Last Operation";
             this.undoBtn.UseVisualStyleBackColor = true;
@@ -444,20 +461,28 @@
             // 
             this.zoomComboBox.Enabled = false;
             this.zoomComboBox.FormattingEnabled = true;
-            this.zoomComboBox.Location = new System.Drawing.Point(520, 398);
+            this.zoomComboBox.Location = new System.Drawing.Point(518, 385);
             this.zoomComboBox.Name = "zoomComboBox";
-            this.zoomComboBox.Size = new System.Drawing.Size(121, 21);
+            this.zoomComboBox.Size = new System.Drawing.Size(300, 21);
             this.zoomComboBox.TabIndex = 11;
             this.zoomComboBox.SelectedIndexChanged += new System.EventHandler(this.zoomComboBox_SelectedIndexChanged);
             // 
             // zoomLbl
             // 
             this.zoomLbl.AutoSize = true;
-            this.zoomLbl.Location = new System.Drawing.Point(480, 401);
+            this.zoomLbl.Location = new System.Drawing.Point(478, 389);
             this.zoomLbl.Name = "zoomLbl";
-            this.zoomLbl.Size = new System.Drawing.Size(34, 13);
+            this.zoomLbl.Size = new System.Drawing.Size(37, 13);
             this.zoomLbl.TabIndex = 12;
-            this.zoomLbl.Text = "Zoom";
+            this.zoomLbl.Text = "Zoom:";
+            // 
+            // selectedColorBox
+            // 
+            this.selectedColorBox.Location = new System.Drawing.Point(86, 92);
+            this.selectedColorBox.Name = "selectedColorBox";
+            this.selectedColorBox.Size = new System.Drawing.Size(255, 20);
+            this.selectedColorBox.TabIndex = 13;
+            this.selectedColorBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -465,13 +490,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 470);
             this.Controls.Add(this.zoomLbl);
-            this.Controls.Add(this.zoomComboBox);
             this.Controls.Add(this.undoBtn);
             this.Controls.Add(this.saveImageBtn);
+            this.Controls.Add(this.zoomComboBox);
             this.Controls.Add(this.mainImageCopy);
             this.Controls.Add(this.cropTab);
-            this.Controls.Add(this.propertiesBtn);
-            this.Controls.Add(this.loadBtn);
+            this.Controls.Add(this.imageDetailsBtn);
+            this.Controls.Add(this.loadImageBtn);
             this.Controls.Add(this.mainImage);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
@@ -493,8 +518,8 @@
         #endregion
 
         private System.Windows.Forms.PictureBox mainImage;
-        private System.Windows.Forms.Button loadBtn;
-        private System.Windows.Forms.Button propertiesBtn;
+        private System.Windows.Forms.Button loadImageBtn;
+        private System.Windows.Forms.Button imageDetailsBtn;
         private System.Windows.Forms.Button selectCropAreaBtn;
         private System.Windows.Forms.Button cropBtn;
         private System.Windows.Forms.TabControl cropTab;
@@ -503,9 +528,9 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button rotate45Btn;
+        private System.Windows.Forms.Button flipVerticalBtn;
+        private System.Windows.Forms.Button flipHorizontalBtn;
         private System.Windows.Forms.Button crop2Btn;
         private System.Windows.Forms.Button crop2TrianglesBtn;
         private System.Windows.Forms.Button crop4Btn;
@@ -514,8 +539,8 @@
         private System.Windows.Forms.Button blueFilter;
         private System.Windows.Forms.Button clearFilter;
         private System.Windows.Forms.PictureBox mainImageCopy;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button rotate180Btn;
+        private System.Windows.Forms.Button rotate90Btn;
         private System.Windows.Forms.Button saveImageBtn;
         private System.Windows.Forms.Button undoBtn;
         private System.Windows.Forms.ComboBox zoomComboBox;
@@ -523,9 +548,11 @@
         private System.Windows.Forms.Button invertColor;
         private System.Windows.Forms.Button gcb;
         private System.Windows.Forms.Button chromakey;
-        private System.Windows.Forms.Button colorPickerBtn;
+        private System.Windows.Forms.Button colorPalettePickerBtn;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox selectedColorBox;
         private System.Windows.Forms.Button searchColorBtn;
+        private System.Windows.Forms.Label colorPixelsNumberLabel;
+        private System.Windows.Forms.Button colorMousePickerBtn;
+        private System.Windows.Forms.Label selectedColorBox;
     }
 }

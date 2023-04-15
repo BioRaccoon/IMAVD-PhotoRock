@@ -16,6 +16,7 @@ using Image = System.Drawing.Image;
 using imagem_IMAVD.SubForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Reflection.Emit;
+using System.IO;
 
 namespace PhotoRock
 {
@@ -26,7 +27,6 @@ namespace PhotoRock
         bool tilted = false;
         string filePath;
         Image img;
-        Bitmap originalImage;
         Bitmap unzoomedImg;
 
         int cropX;
@@ -36,23 +36,105 @@ namespace PhotoRock
         public Pen cropPen;
         public DashStyle cropDashStyle = DashStyle.DashDot;
         private bool cropEnabled;
-        public List<Image> images = new List<Image>();
+        private bool colorPickerEnabled;
+        public List<Image> imageCopiesList = new List<Image>();
         public MainForm()
         {
             InitializeComponent();
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            initializeControlsProperties();
+        }
 
+        public void initializeControlsProperties()
+        {
+            deactivateAllButtonControls();
+            changeInitialControlsProperties();
+        }
+
+        public void changeInitialControlsProperties()
+        {
+            loadImageBtn.Enabled = true;
+            mainImageCopy.Visible = false;
+            selectedColorBox.Text = "White (Default Color)";
+            selectedColorBox.TextAlign = ContentAlignment.MiddleCenter;
+            selectedColorBox.BackColor = Color.White;
+            colorPixelsNumberLabel.Visible = false;
+            colorPixelsNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
+        }
+
+        public void deactivateAllButtonControls()
+        {
+            /////////////////////////////
+            loadImageBtn.Enabled = false;
+            saveImageBtn.Enabled = false;
+            imageDetailsBtn.Enabled = false;
+            undoBtn.Enabled = false;
+            zoomComboBox.Enabled = false;
+            ////////////////////////////
             selectCropAreaBtn.Enabled = false;
             cropBtn.Enabled = false;
             crop2Btn.Enabled = false;
             crop4Btn.Enabled = false;
             crop2TrianglesBtn.Enabled = false;
-            mainImageCopy.Visible= false; 
+            ////////////////////////////
+            rotate45Btn.Enabled = false;
+            rotate90Btn.Enabled = false;
+            rotate180Btn.Enabled = false;
+            flipHorizontalBtn.Enabled = false;
+            flipVerticalBtn.Enabled = false;
+            ////////////////////////////
+            redFilter.Enabled = false;
+            greenFilter.Enabled = false;
+            blueFilter.Enabled = false;
+            clearFilter.Enabled = false;
+            gcb.Enabled = false;
+            ////////////////////////////
+            colorPalettePickerBtn.Enabled = false;
+            colorMousePickerBtn.Enabled = false;
+            selectedColorBox.Enabled = false;
+            searchColorBtn.Enabled = false;
+            ////////////////////////////
+            chromakey.Enabled = false;
+        }
 
+        public void activateAllButtonControls()
+        {
+            /////////////////////////////
+            loadImageBtn.Enabled = true;
+            saveImageBtn.Enabled = true;
+            imageDetailsBtn.Enabled = true;
+            undoBtn.Enabled = true;
+            zoomComboBox.Enabled = true;
+            ////////////////////////////
+            selectCropAreaBtn.Enabled = true;
+            cropBtn.Enabled = true;
+            crop2Btn.Enabled = true;
+            crop4Btn.Enabled = true;
+            crop2TrianglesBtn.Enabled = true;
+            ////////////////////////////
+            rotate45Btn.Enabled = true;
+            rotate90Btn.Enabled = true;
+            rotate180Btn.Enabled = true;
+            flipHorizontalBtn.Enabled = true;
+            flipVerticalBtn.Enabled = true;
+            ////////////////////////////
+            redFilter.Enabled = true;
+            greenFilter.Enabled = true;
+            blueFilter.Enabled = true;
+            clearFilter.Enabled = true;
+            gcb.Enabled = true;
+            ////////////////////////////
+            colorPalettePickerBtn.Enabled = true;
+            colorMousePickerBtn.Enabled = true;
+            selectedColorBox.Enabled = true;
+            searchColorBtn.Enabled = true;
+            ////////////////////////////
+            chromakey.Enabled = true;
         }
 
         private void loadBtn_Click(object sender, EventArgs e)
         {
+            deactivateAllButtonControls();
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.Title = "Select an image file";
@@ -67,16 +149,12 @@ namespace PhotoRock
                 mainImageCopy.Image = Image.FromFile(filePath);
                 img = Image.FromFile(filePath);
                 imageIsSelected = true;
-                images.Add(img);
+                imageCopiesList.Add(img);
 
-                selectCropAreaBtn.Enabled = true;
-                crop2Btn.Enabled = true;
-                crop4Btn.Enabled = true;
-                crop2TrianglesBtn.Enabled = true;
+                activateAllButtonControls();
 
                 unzoomedImg = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
 
-                zoomComboBox.Enabled = true;
                 zoomComboBox.DropDownStyle= ComboBoxStyle.DropDownList;
 
                 string[] zooms =
@@ -93,42 +171,57 @@ namespace PhotoRock
 
                 zoomComboBox.SelectedItem = zooms[1];
 
-                
-
-                //MessageBox.Show("s - " + pictureBox1.Width + "\nt - " + pictureBox1.Height);
-
-
+                imageCopiesList = new List<Image>();
+                imageCopiesList.Add(mainImage.Image);
             }
+            activateAllButtonControls();
         }
 
         private void saveImageBtn_Click(object sender, EventArgs e)
         {
+            deactivateAllButtonControls();
             GlobalFunctions.saveImage(mainImage.Image);
+            activateAllButtonControls();
         }
 
         private void propertiesBtn_Click(object sender, EventArgs e)
         {
+            deactivateAllButtonControls();
             if (imageIsSelected)
             {
                 PropertiesForm propertiesF = new PropertiesForm();
                 propertiesF.FilePath = filePath;
-                propertiesF.Show();
+                propertiesF.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Tem que inserir uma imagem primero!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            activateAllButtonControls();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && cropEnabled)
+            if (e.Button == MouseButtons.Left)
             {
-                Cursor = Cursors.Cross;
-                cropX = e.X;
-                cropY = e.Y;
-                cropPen = new Pen(Color.Black, 3);
-                cropPen.DashStyle = DashStyle.DashDotDot;
+                if (cropEnabled)
+                {
+                    Cursor = Cursors.Cross;
+                    cropX = e.X;
+                    cropY = e.Y;
+                    cropPen = new Pen(Color.Black, 3);
+                    cropPen.DashStyle = DashStyle.DashDotDot;
+                }
+                if (colorPickerEnabled)
+                {
+                    Bitmap bmp = new Bitmap(mainImage.Image);
+                    selectedColorBox.Text = "";
+                    selectedColorBox.BackColor = bmp.GetPixel(e.X, e.Y);
+                    Cursor = Cursors.Default;
+                    colorPickerEnabled = false;
+                    activateAllButtonControls();
+                    colorMousePickerBtn.Text = "Pick Color (With Mouse)";
+                }
             }
             mainImage.Refresh();
         }
@@ -171,51 +264,46 @@ namespace PhotoRock
                 mainImage.Image = _img;
                 //pictureBox1.Width = _img.Width;
                 //pictureBox1.Height = _img.Height;
+                activateAllButtonControls();
                 cropBtn.Enabled = false;
                 cropEnabled = false;
                 selectCropAreaBtn.Text = "Select Area";
-                crop2Btn.Enabled = true;
-                crop4Btn.Enabled = true;
-                crop2TrianglesBtn.Enabled = true;
-                images.Add(mainImage.Image);
-
+                imageCopiesList.Add(mainImage.Image);
             }
         }
 
         private void selectCropAreaBtn_Click(object sender, EventArgs e)
         {
             if (!cropEnabled) {
+                deactivateAllButtonControls();
                 cropEnabled = true;
                 cropBtn.Enabled = true;
+                selectCropAreaBtn.Enabled = true;
                 selectCropAreaBtn.Text = "Cancel Crop";
-                crop2Btn.Enabled = false;
-                crop4Btn.Enabled = false;
-                crop2TrianglesBtn.Enabled = false;
             } else
             {
+                activateAllButtonControls();
                 selectCropAreaBtn.Text = "Select Area";
                 cropEnabled = false;
                 cropBtn.Enabled = false;
                 Cursor = Cursors.Default;
                 cropPen = null;
                 mainImage.Refresh();
-                crop2Btn.Enabled = true;
-                crop4Btn.Enabled = true;
-                crop2TrianglesBtn.Enabled = true;
             }
-            
         }
 
         private void crop2Btn_Click(object sender, EventArgs e)
         {
+            deactivateAllButtonControls();
             Crop2SquareForm crop2SquareForm = new Crop2SquareForm();
             crop2SquareForm.imageToCrop = mainImage;
             DialogResult result = crop2SquareForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
+                activateAllButtonControls();
                 mainImage.Image = crop2SquareForm.newImageToWork;
-                images.Add(mainImage.Image);
+                imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop2SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2SquareForm.newImageToWork.Height;
             }
@@ -228,7 +316,7 @@ namespace PhotoRock
                 return;
             }
 
-            MessageBox.Show("Picture Box - " + mainImage.Width + "," + mainImage.Height);
+            //MessageBox.Show("Picture Box - " + mainImage.Width + "," + mainImage.Height);
 
             Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = Rotate45(OriginalImage, tilted);
@@ -238,14 +326,16 @@ namespace PhotoRock
 
         private void crop4Btn_Click(object sender, EventArgs e)
         {
+            deactivateAllButtonControls();
             Crop4SquareForm crop4SquareForm = new Crop4SquareForm();
             crop4SquareForm.imageToCrop = mainImage;
             DialogResult result = crop4SquareForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
+                activateAllButtonControls();
                 mainImage.Image = crop4SquareForm.newImageToWork;
-                images.Add(mainImage.Image);
+                imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop4SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop4SquareForm.newImageToWork.Height;
             }
@@ -253,14 +343,16 @@ namespace PhotoRock
 
         private void crop2TrianglesBtn_Click(object sender, EventArgs e)
         {
+            deactivateAllButtonControls();
             Crop2TriangleForm crop2TriangleForm = new Crop2TriangleForm();
             crop2TriangleForm.imageToCrop = mainImage;
             DialogResult result = crop2TriangleForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
+                activateAllButtonControls();
                 mainImage.Image = crop2TriangleForm.newImageToWork;
-                images.Add(mainImage.Image);
+                imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop2TriangleForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2TriangleForm.newImageToWork.Height;
             }
@@ -385,7 +477,7 @@ namespace PhotoRock
                     mainImage.Image = filteredImage;
                 }
             }
-            images.Add(mainImage.Image);
+            imageCopiesList.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
@@ -402,7 +494,7 @@ namespace PhotoRock
                     mainImage.Image = filteredImage;
                 }
             }
-            images.Add(mainImage.Image);
+            imageCopiesList.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
@@ -420,7 +512,7 @@ namespace PhotoRock
                     
                 }
             }
-            images.Add(mainImage.Image);
+            imageCopiesList.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
@@ -435,13 +527,9 @@ namespace PhotoRock
 
         private void undoBtn_Click(object sender, EventArgs e)
         {
-            if (images.Count > 1) {
-                mainImage.Image = images[images.Count - 2];
-                images.RemoveAt(images.Count - 1);
-            }
-            else
-            {
-                MessageBox.Show("si fodeu");
+            if (imageCopiesList.Count > 1) {
+                mainImage.Image = imageCopiesList[imageCopiesList.Count - 2];
+                imageCopiesList.RemoveAt(imageCopiesList.Count - 1);
             }
         }
 
@@ -490,19 +578,9 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = gcbForm.adjustedImage;
-                images.Add(mainImage.Image);
+                imageCopiesList.Add(mainImage.Image);
             }
 
-        }
-
-        private void colorPickerBtn_Click(object sender, EventArgs e)
-        {
-            ColorDialog color = new ColorDialog();
-            color.FullOpen = true;
-            if (color.ShowDialog() == DialogResult.OK)
-            {
-                selectedColorBox.BackColor = color.Color;
-            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -524,7 +602,7 @@ namespace PhotoRock
                 }
             }
             mainImage.Image = invertedImage;
-            images.Add(mainImage.Image);
+            imageCopiesList.Add(mainImage.Image);
         }
 
         private void chromaKey_Click(object sender, EventArgs e)
@@ -535,12 +613,66 @@ namespace PhotoRock
             if (result == DialogResult.OK)
             {
                 mainImage.Image = ck.finalImage;
-                images.Add(mainImage.Image);
+                imageCopiesList.Add(mainImage.Image);
             }
         }
+
+        private void colorPalettePickerBtn_Click(object sender, EventArgs e)
+        {
+            deactivateAllButtonControls();
+            ColorDialog color = new ColorDialog();
+            color.FullOpen = true;
+            if (color.ShowDialog() == DialogResult.OK)
+            {
+                selectedColorBox.BackColor = color.Color;
+                selectedColorBox.Text = "";
+                colorPixelsNumberLabel.Visible = false;
+            }
+            activateAllButtonControls();
+        }
+        private void colorMousePickerBtn_Click(object sender, EventArgs e)
+        {
+            if (!colorPickerEnabled)
+            {
+                deactivateAllButtonControls();
+                // Mudar o cursor para um "Color Dropper" quando o mouse se mover no formulário
+                Cursor = CreateColorDropperCursor();
+                colorPickerEnabled = true;
+                colorMousePickerBtn.Text = "Cancel Color Pick";
+                colorMousePickerBtn.Enabled = true;
+            } else
+            {
+                activateAllButtonControls();
+                colorPickerEnabled = false;
+                colorMousePickerBtn.Text = "Pick Color (With Mouse)";
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private Cursor CreateColorDropperCursor()
+        {
+            // Cria uma imagem de cursor personalizada usando um arquivo de imagem PNG
+            // Carregar a imagem de cursor personalizada do arquivo
+
+            string photoRockDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var charsToRemove = new string[] { "\\bin", "\\Release", "\\Debug" };
+            foreach (var c in charsToRemove)
+            {
+                photoRockDirectory = photoRockDirectory.Replace(c, string.Empty);
+            }
+
+            Image cursorImage = Image.FromFile(photoRockDirectory + "Resources\\colorPickerIcon.png");
+
+            // Criar um cursor a partir da imagem carregada
+            Cursor cursor = new Cursor(new Bitmap(cursorImage).GetHicon());
+
+            return cursor;
+        }
+
         private void searchColorBtn_Click(object sender, EventArgs e)
         {
-            Boolean IsColorFound = false;
+            //Boolean IsColorFound = false;
+            int colorPixelsNumber = 0;
             if (mainImage.Image != null)
             {
                 //Converting loaded image into bitmap
@@ -557,20 +689,29 @@ namespace PhotoRock
                         //Compare Pixel's Color ARGB property with the picked color's ARGB property
                         if (now_color.ToArgb() == selectedColorBox.BackColor.ToArgb())
                         {
-                            IsColorFound = true;
-                            MessageBox.Show("Color Found!");
-                            break;
+                            colorPixelsNumber++;
                         }
                     }
-                    if (IsColorFound == true)
+                }
+                if (colorPixelsNumber > 0)
+                {
+                    if (colorPixelsNumber == 1)
                     {
-                        break;
+                        colorPixelsNumberLabel.Text = "Color Found! \r\nThe image contains " + colorPixelsNumber + " pixel of the selected color";
+                    }
+                    else
+                    {
+                        colorPixelsNumberLabel.Text = "Color Found! \r\nThe image contains " + colorPixelsNumber + " pixels of the selected color";
                     }
                 }
-                if (IsColorFound == false)
+                else
                 {
-                    MessageBox.Show("Selected Color Not Found.");
+                    colorPixelsNumberLabel.Text = "Color Not Found!";
                 }
+                colorPixelsNumberLabel.Visible = true;
+                colorPixelsNumberLabel.Location = new Point(
+                    searchColorBtn.Location.X + searchColorBtn.Width/2 - colorPixelsNumberLabel.Width/2,
+                    searchColorBtn.Location.Y + searchColorBtn.Height + 10);
             }
             else
             {
