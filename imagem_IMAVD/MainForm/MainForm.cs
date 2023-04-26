@@ -301,12 +301,12 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
-                activateAllButtonControls();
                 mainImage.Image = crop2SquareForm.newImageToWork;
                 imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop2SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2SquareForm.newImageToWork.Height;
             }
+            activateAllButtonControls();
         }
 
         private void rotate45Btn_Click(object sender, EventArgs e)
@@ -333,12 +333,12 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
-                activateAllButtonControls();
                 mainImage.Image = crop4SquareForm.newImageToWork;
                 imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop4SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop4SquareForm.newImageToWork.Height;
             }
+            activateAllButtonControls();
         }
 
         private void crop2TrianglesBtn_Click(object sender, EventArgs e)
@@ -350,12 +350,12 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
-                activateAllButtonControls();
                 mainImage.Image = crop2TriangleForm.newImageToWork;
                 imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop2TriangleForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2TriangleForm.newImageToWork.Height;
             }
+            activateAllButtonControls();
         }
 
         private void rotate90Btn_Click(object sender, EventArgs e)
