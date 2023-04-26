@@ -553,6 +553,7 @@ namespace PhotoRock
             Bitmap OriginalImage = new Bitmap(unzoomedImg, unzoomedImg.Width, unzoomedImg.Height);
             Bitmap _img = zoomImage(OriginalImage, scIdx);
             mainImage.Image = _img;
+            imageCopiesList.Add(_img);
         }
 
         private Bitmap zoomImage(Bitmap b, float scIdx)
