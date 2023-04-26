@@ -17,6 +17,7 @@ using imagem_IMAVD.SubForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Reflection.Emit;
 using System.IO;
+using System.Diagnostics;
 
 namespace PhotoRock
 {
@@ -561,8 +562,39 @@ namespace PhotoRock
             //Make a graphics object from the empty bitmap.
             Graphics g = Graphics.FromImage(returnBitmap);
             //move rotation point to center of image.
-            //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            //g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+            //if (scIdx != 0.5) {
+            //    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            //    float trX = (float)b.Width / scIdx - b.Width;
+            //    float trY = (float)b.Height / scIdx - b.Height;
+            //    g.TranslateTransform(trX, trY);
+            //}
+            //else {
+            //    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            //    float trX = (float)b.Width * scIdx - b.Width;
+            //    float trY = (float)b.Height * scIdx - b.Height;
+            //    g.TranslateTransform(112, 112);
+            //}
+            switch (scIdx) {
+                case 0.5f:
+                    g.TranslateTransform(b.Width/4, b.Height/4);
+                    break;
+                case 1f:
+                    g.TranslateTransform(0, 0); break;
+                case 1.5f:
+                    g.TranslateTransform(-b.Width/4, -b.Width/4);
+                    break;
+                case 2f:
+                    g.TranslateTransform(-b.Width/2,-b.Height/2); break;
+                case 3f:
+                    g.TranslateTransform(-b.Width,-b.Height); break;
+                case 4f:
+                    g.TranslateTransform(-3 * b.Width / 2, -3 * b.Height / 2);
+                    break;
+                case 5f:
+                    g.TranslateTransform(-2*b.Width,-2*b.Height);
+                    break;
+            }
+
             //Rotate.        
             g.ScaleTransform(scIdx, scIdx);
 
