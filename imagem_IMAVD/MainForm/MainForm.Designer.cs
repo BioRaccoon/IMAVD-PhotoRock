@@ -52,19 +52,21 @@
             this.greenFilter = new System.Windows.Forms.Button();
             this.redFilter = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.selectedColorBox = new System.Windows.Forms.Label();
             this.colorMousePickerBtn = new System.Windows.Forms.Button();
             this.colorPixelsNumberLabel = new System.Windows.Forms.Label();
             this.searchColorBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.colorPalettePickerBtn = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.resize_btn = new System.Windows.Forms.Button();
             this.chromakey = new System.Windows.Forms.Button();
             this.mainImageCopy = new System.Windows.Forms.PictureBox();
             this.saveImageBtn = new System.Windows.Forms.Button();
             this.undoBtn = new System.Windows.Forms.Button();
             this.zoomComboBox = new System.Windows.Forms.ComboBox();
             this.zoomLbl = new System.Windows.Forms.Label();
-            this.selectedColorBox = new System.Windows.Forms.Label();
+            this.addElement_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainImage)).BeginInit();
             this.cropTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -354,6 +356,14 @@
             this.tabPage5.Text = "Color Picker";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // selectedColorBox
+            // 
+            this.selectedColorBox.Location = new System.Drawing.Point(86, 92);
+            this.selectedColorBox.Name = "selectedColorBox";
+            this.selectedColorBox.Size = new System.Drawing.Size(255, 20);
+            this.selectedColorBox.TabIndex = 13;
+            this.selectedColorBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // colorMousePickerBtn
             // 
             this.colorMousePickerBtn.Location = new System.Drawing.Point(5, 45);
@@ -406,6 +416,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.addElement_btn);
+            this.tabPage4.Controls.Add(this.resize_btn);
             this.tabPage4.Controls.Add(this.chromakey);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -414,6 +426,16 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Extra";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // resize_btn
+            // 
+            this.resize_btn.Location = new System.Drawing.Point(3, 51);
+            this.resize_btn.Name = "resize_btn";
+            this.resize_btn.Size = new System.Drawing.Size(345, 40);
+            this.resize_btn.TabIndex = 11;
+            this.resize_btn.Text = "Resize";
+            this.resize_btn.UseVisualStyleBackColor = true;
+            this.resize_btn.Click += new System.EventHandler(this.resize_btn_Click);
             // 
             // chromakey
             // 
@@ -476,13 +498,15 @@
             this.zoomLbl.TabIndex = 12;
             this.zoomLbl.Text = "Zoom:";
             // 
-            // selectedColorBox
+            // addElement_btn
             // 
-            this.selectedColorBox.Location = new System.Drawing.Point(86, 92);
-            this.selectedColorBox.Name = "selectedColorBox";
-            this.selectedColorBox.Size = new System.Drawing.Size(255, 20);
-            this.selectedColorBox.TabIndex = 13;
-            this.selectedColorBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.addElement_btn.Location = new System.Drawing.Point(3, 97);
+            this.addElement_btn.Name = "addElement_btn";
+            this.addElement_btn.Size = new System.Drawing.Size(342, 40);
+            this.addElement_btn.TabIndex = 12;
+            this.addElement_btn.Text = "Add Element";
+            this.addElement_btn.UseVisualStyleBackColor = true;
+            this.addElement_btn.Click += new System.EventHandler(this.addElement_btn_Click);
             // 
             // MainForm
             // 
@@ -554,5 +578,7 @@
         private System.Windows.Forms.Label colorPixelsNumberLabel;
         private System.Windows.Forms.Button colorMousePickerBtn;
         private System.Windows.Forms.Label selectedColorBox;
+        private System.Windows.Forms.Button resize_btn;
+        private System.Windows.Forms.Button addElement_btn;
     }
 }

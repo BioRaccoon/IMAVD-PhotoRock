@@ -751,5 +751,169 @@ namespace PhotoRock
                 MessageBox.Show("Image is not loaded");
             }
         }
+
+        private void resize_btn_Click(object sender, EventArgs e)
+        {
+              // Create a new form for the user to input the width and height values
+    var resizeForm = new Form
+    {
+        Text = "Resize Image",
+        Size = new Size(200, 150)
+    };
+
+            var widthLabel = new System.Windows.Forms.Label
+            {
+                Text = "Width:",
+                Location = new Point(10, 10),
+                Size = new Size(50, 20)
+            };
+            var heightLabel = new System.Windows.Forms.Label
+            {
+                Text = "Height:",
+                Location = new Point(10, 40),
+                Size = new Size(50, 20)
+            };
+
+            // Create two text boxes for the user to input the width and height values
+            var widthTextBox = new System.Windows.Forms.TextBox
+    {
+        Location = new Point(60, 10),
+        Size = new Size(150, 20)
+    };
+    var heightTextBox = new System.Windows.Forms.TextBox
+    {
+        Location = new Point(60, 40),
+        Size = new Size(150, 20)
+    };
+
+            // Add the text boxes to the form
+            resizeForm.Controls.Add(widthLabel);
+            resizeForm.Controls.Add(heightLabel);
+            resizeForm.Controls.Add(widthTextBox);
+    resizeForm.Controls.Add(heightTextBox);
+
+    // Create a button for the user to confirm their input
+    var okButton = new System.Windows.Forms.Button
+    {
+        Text = "OK",
+        Location = new Point(70, 80),
+        DialogResult = DialogResult.OK
+    };
+
+    // Add the OK button to the form
+    resizeForm.Controls.Add(okButton);
+
+    // Display the form to the user and wait for them to input the width and height values
+    if (resizeForm.ShowDialog() == DialogResult.OK)
+    {
+        // Retrieve the width and height values from the text boxes
+        int width, height;
+        if (int.TryParse(widthTextBox.Text, out width) && int.TryParse(heightTextBox.Text, out height))
+        {
+            // Set the width and height of the picture box to the user input values
+            mainImage.Width = width;
+            mainImage.Height = height;
+        }
+        else
+        {
+            MessageBox.Show("Invalid input. Please enter a valid integer value for the width and height.");
+        }
+    }
+        }
+
+        private void addElement_btn_Click(object sender, EventArgs e)
+        {
+            // Create a new form for the user to input the text or image file path
+            var addForm = new Form
+            {
+                Text = "Add Image or Text",
+                Size = new Size(350, 150)
+            };
+
+            // Create a label for the file path text box
+            var filePathLabel = new System.Windows.Forms.Label
+            {
+                Text = "File Path or Text:",
+                Location = new Point(10, 10),
+                Size = new Size(100, 20)
+            };
+
+            // Create a text box for the user to input the file path or text
+            var filePathTextBox = new System.Windows.Forms.TextBox
+            {
+                Location = new Point(120, 10),
+                Size = new Size(200, 20)
+            };
+
+            // Create a button for the user to browse for an image file
+            var browseButton = new System.Windows.Forms.Button
+            {
+                Text = "Browse",
+                Location = new Point(10, 40),
+                Size = new Size(80, 23)
+            };
+
+            // Create a button for the user to confirm their input
+            var okButton = new System.Windows.Forms.Button
+            {
+                Text = "OK",
+                Location = new Point(170, 70),
+                DialogResult = DialogResult.OK
+            };
+
+            // Add event handler to browse button to open a file dialog when clicked
+            browseButton.Click += (s, ea) =>
+            {
+                var openFileDialog = new OpenFileDialog
+                {
+                    Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif|All Files (*.*)|*.*"
+                };
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePathTextBox.Text = openFileDialog.FileName;
+                }
+            };
+
+            // Add the label, text box, browse button, and OK button to the form
+            addForm.Controls.Add(filePathLabel);
+            addForm.Controls.Add(filePathTextBox);
+            addForm.Controls.Add(browseButton);
+            addForm.Controls.Add(okButton);
+
+            // Display the form to the user and wait for them to input the file path or text
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                // Check if the user input a file path or text
+                if (!string.IsNullOrEmpty(filePathTextBox.Text))
+                {
+                    // Check if the user input a valid image file path
+                    if (File.Exists(filePathTextBox.Text) && Image.FromFile(filePathTextBox.Text) != null)
+                    {
+                        // Create a new Bitmap from the existing picture box image
+                        var bitmap = new Bitmap(mainImage.Image);
+
+                        // Load the new image file and draw it on top of the existing image
+                        var newImage = Image.FromFile(filePathTextBox.Text);
+                        var graphics = Graphics.FromImage(bitmap);
+                        graphics.DrawImage(newImage, 0, 0, mainImage.Width, mainImage.Height);
+
+                        // Set the updated image as the picture box image
+                        mainImage.Image = bitmap;
+                    }
+                    else
+                    {
+                        // If the user input a text, add it as a new Label control on top of the existing image
+                        var label = new System.Windows.Forms.Label
+                        {
+                            Text = filePathTextBox.Text,
+                            Location = new Point(10, 10),
+                            AutoSize = true,
+                            ForeColor = Color.Red
+                        };
+                        mainImage.Controls.Add(label);
+                    }
+                }
+            }
+        }
     }
 }
