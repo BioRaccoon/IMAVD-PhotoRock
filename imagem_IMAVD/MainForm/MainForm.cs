@@ -168,6 +168,7 @@ namespace PhotoRock
                     "400%",
                     "500%"
                 };
+                zoomComboBox.Items.Clear();
                 zoomComboBox.Items.AddRange(zooms);
 
                 zoomComboBox.SelectedItem = zooms[1];
