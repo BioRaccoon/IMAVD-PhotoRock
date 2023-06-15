@@ -59,14 +59,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.colorPalettePickerBtn = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.addElement_btn = new System.Windows.Forms.Button();
             this.resize_btn = new System.Windows.Forms.Button();
             this.chromakey = new System.Windows.Forms.Button();
-            this.mainImageCopy = new System.Windows.Forms.PictureBox();
             this.saveImageBtn = new System.Windows.Forms.Button();
             this.undoBtn = new System.Windows.Forms.Button();
             this.zoomComboBox = new System.Windows.Forms.ComboBox();
             this.zoomLbl = new System.Windows.Forms.Label();
-            this.addElement_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainImage)).BeginInit();
             this.cropTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -74,13 +73,12 @@
             this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainImageCopy)).BeginInit();
             this.SuspendLayout();
             // 
             // mainImage
             // 
             this.mainImage.Location = new System.Drawing.Point(10, 10);
-            this.mainImage.Margin = new System.Windows.Forms.Padding(2);
+            this.mainImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.mainImage.Name = "mainImage";
             this.mainImage.Size = new System.Drawing.Size(450, 450);
             this.mainImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -92,7 +90,7 @@
             // loadImageBtn
             // 
             this.loadImageBtn.Location = new System.Drawing.Point(473, 252);
-            this.loadImageBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.loadImageBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.loadImageBtn.Name = "loadImageBtn";
             this.loadImageBtn.Size = new System.Drawing.Size(172, 40);
             this.loadImageBtn.TabIndex = 1;
@@ -103,7 +101,7 @@
             // imageDetailsBtn
             // 
             this.imageDetailsBtn.Location = new System.Drawing.Point(473, 296);
-            this.imageDetailsBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.imageDetailsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.imageDetailsBtn.Name = "imageDetailsBtn";
             this.imageDetailsBtn.Size = new System.Drawing.Size(345, 40);
             this.imageDetailsBtn.TabIndex = 2;
@@ -114,7 +112,7 @@
             // selectCropAreaBtn
             // 
             this.selectCropAreaBtn.Location = new System.Drawing.Point(4, 4);
-            this.selectCropAreaBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.selectCropAreaBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectCropAreaBtn.Name = "selectCropAreaBtn";
             this.selectCropAreaBtn.Size = new System.Drawing.Size(345, 40);
             this.selectCropAreaBtn.TabIndex = 5;
@@ -125,7 +123,7 @@
             // cropBtn
             // 
             this.cropBtn.Location = new System.Drawing.Point(4, 45);
-            this.cropBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.cropBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cropBtn.Name = "cropBtn";
             this.cropBtn.Size = new System.Drawing.Size(345, 40);
             this.cropBtn.TabIndex = 6;
@@ -155,7 +153,7 @@
             this.tabPage1.Controls.Add(this.cropBtn);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage1.Size = new System.Drawing.Size(351, 210);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Crop";
@@ -164,7 +162,7 @@
             // crop2TrianglesBtn
             // 
             this.crop2TrianglesBtn.Location = new System.Drawing.Point(4, 167);
-            this.crop2TrianglesBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.crop2TrianglesBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.crop2TrianglesBtn.Name = "crop2TrianglesBtn";
             this.crop2TrianglesBtn.Size = new System.Drawing.Size(345, 40);
             this.crop2TrianglesBtn.TabIndex = 9;
@@ -175,7 +173,7 @@
             // crop4Btn
             // 
             this.crop4Btn.Location = new System.Drawing.Point(4, 126);
-            this.crop4Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.crop4Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.crop4Btn.Name = "crop4Btn";
             this.crop4Btn.Size = new System.Drawing.Size(345, 40);
             this.crop4Btn.TabIndex = 8;
@@ -186,7 +184,7 @@
             // crop2Btn
             // 
             this.crop2Btn.Location = new System.Drawing.Point(4, 85);
-            this.crop2Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.crop2Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.crop2Btn.Name = "crop2Btn";
             this.crop2Btn.Size = new System.Drawing.Size(345, 40);
             this.crop2Btn.TabIndex = 7;
@@ -203,7 +201,7 @@
             this.tabPage2.Controls.Add(this.rotate45Btn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage2.Size = new System.Drawing.Size(351, 210);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rotate & Flip";
@@ -212,7 +210,7 @@
             // rotate180Btn
             // 
             this.rotate180Btn.Location = new System.Drawing.Point(4, 85);
-            this.rotate180Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.rotate180Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotate180Btn.Name = "rotate180Btn";
             this.rotate180Btn.Size = new System.Drawing.Size(345, 40);
             this.rotate180Btn.TabIndex = 4;
@@ -223,7 +221,7 @@
             // rotate90Btn
             // 
             this.rotate90Btn.Location = new System.Drawing.Point(3, 45);
-            this.rotate90Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.rotate90Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotate90Btn.Name = "rotate90Btn";
             this.rotate90Btn.Size = new System.Drawing.Size(345, 40);
             this.rotate90Btn.TabIndex = 3;
@@ -234,7 +232,7 @@
             // flipVerticalBtn
             // 
             this.flipVerticalBtn.Location = new System.Drawing.Point(4, 167);
-            this.flipVerticalBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.flipVerticalBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flipVerticalBtn.Name = "flipVerticalBtn";
             this.flipVerticalBtn.Size = new System.Drawing.Size(345, 40);
             this.flipVerticalBtn.TabIndex = 2;
@@ -245,7 +243,7 @@
             // flipHorizontalBtn
             // 
             this.flipHorizontalBtn.Location = new System.Drawing.Point(4, 126);
-            this.flipHorizontalBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.flipHorizontalBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flipHorizontalBtn.Name = "flipHorizontalBtn";
             this.flipHorizontalBtn.Size = new System.Drawing.Size(345, 40);
             this.flipHorizontalBtn.TabIndex = 1;
@@ -256,7 +254,7 @@
             // rotate45Btn
             // 
             this.rotate45Btn.Location = new System.Drawing.Point(4, 4);
-            this.rotate45Btn.Margin = new System.Windows.Forms.Padding(2);
+            this.rotate45Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotate45Btn.Name = "rotate45Btn";
             this.rotate45Btn.Size = new System.Drawing.Size(345, 40);
             this.rotate45Btn.TabIndex = 0;
@@ -274,7 +272,7 @@
             this.tabPage3.Controls.Add(this.redFilter);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage3.Size = new System.Drawing.Size(351, 210);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Adjustments";
@@ -292,7 +290,7 @@
             // 
             // gcb
             // 
-            this.gcb.Location = new System.Drawing.Point(5, 167);
+            this.gcb.Location = new System.Drawing.Point(4, 126);
             this.gcb.Name = "gcb";
             this.gcb.Size = new System.Drawing.Size(345, 40);
             this.gcb.TabIndex = 4;
@@ -350,7 +348,7 @@
             this.tabPage5.Controls.Add(this.colorPalettePickerBtn);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage5.Size = new System.Drawing.Size(351, 210);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Color Picker";
@@ -421,11 +419,21 @@
             this.tabPage4.Controls.Add(this.chromakey);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage4.Size = new System.Drawing.Size(351, 210);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Extra";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // addElement_btn
+            // 
+            this.addElement_btn.Location = new System.Drawing.Point(3, 97);
+            this.addElement_btn.Name = "addElement_btn";
+            this.addElement_btn.Size = new System.Drawing.Size(342, 40);
+            this.addElement_btn.TabIndex = 12;
+            this.addElement_btn.Text = "Add Element";
+            this.addElement_btn.UseVisualStyleBackColor = true;
+            this.addElement_btn.Click += new System.EventHandler(this.addElement_btn_Click);
             // 
             // resize_btn
             // 
@@ -440,7 +448,7 @@
             // chromakey
             // 
             this.chromakey.Location = new System.Drawing.Point(3, 5);
-            this.chromakey.Margin = new System.Windows.Forms.Padding(2);
+            this.chromakey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chromakey.Name = "chromakey";
             this.chromakey.Size = new System.Drawing.Size(345, 41);
             this.chromakey.TabIndex = 10;
@@ -448,19 +456,10 @@
             this.chromakey.UseVisualStyleBackColor = true;
             this.chromakey.Click += new System.EventHandler(this.chromaKey_Click);
             // 
-            // mainImageCopy
-            // 
-            this.mainImageCopy.Location = new System.Drawing.Point(10, 10);
-            this.mainImageCopy.Name = "mainImageCopy";
-            this.mainImageCopy.Size = new System.Drawing.Size(450, 450);
-            this.mainImageCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.mainImageCopy.TabIndex = 8;
-            this.mainImageCopy.TabStop = false;
-            // 
             // saveImageBtn
             // 
             this.saveImageBtn.Location = new System.Drawing.Point(646, 252);
-            this.saveImageBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.saveImageBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.saveImageBtn.Name = "saveImageBtn";
             this.saveImageBtn.Size = new System.Drawing.Size(172, 40);
             this.saveImageBtn.TabIndex = 9;
@@ -471,7 +470,7 @@
             // undoBtn
             // 
             this.undoBtn.Location = new System.Drawing.Point(473, 340);
-            this.undoBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.undoBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.undoBtn.Name = "undoBtn";
             this.undoBtn.Size = new System.Drawing.Size(345, 40);
             this.undoBtn.TabIndex = 10;
@@ -498,16 +497,6 @@
             this.zoomLbl.TabIndex = 12;
             this.zoomLbl.Text = "Zoom:";
             // 
-            // addElement_btn
-            // 
-            this.addElement_btn.Location = new System.Drawing.Point(3, 97);
-            this.addElement_btn.Name = "addElement_btn";
-            this.addElement_btn.Size = new System.Drawing.Size(342, 40);
-            this.addElement_btn.TabIndex = 12;
-            this.addElement_btn.Text = "Add Element";
-            this.addElement_btn.UseVisualStyleBackColor = true;
-            this.addElement_btn.Click += new System.EventHandler(this.addElement_btn_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -517,12 +506,11 @@
             this.Controls.Add(this.undoBtn);
             this.Controls.Add(this.saveImageBtn);
             this.Controls.Add(this.zoomComboBox);
-            this.Controls.Add(this.mainImageCopy);
             this.Controls.Add(this.cropTab);
             this.Controls.Add(this.imageDetailsBtn);
             this.Controls.Add(this.loadImageBtn);
             this.Controls.Add(this.mainImage);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "PhotoRock";
             ((System.ComponentModel.ISupportInitialize)(this.mainImage)).EndInit();
@@ -533,15 +521,12 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mainImageCopy)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox mainImage;
         private System.Windows.Forms.Button loadImageBtn;
         private System.Windows.Forms.Button imageDetailsBtn;
         private System.Windows.Forms.Button selectCropAreaBtn;
@@ -562,7 +547,6 @@
         private System.Windows.Forms.Button greenFilter;
         private System.Windows.Forms.Button blueFilter;
         private System.Windows.Forms.Button clearFilter;
-        private System.Windows.Forms.PictureBox mainImageCopy;
         private System.Windows.Forms.Button rotate180Btn;
         private System.Windows.Forms.Button rotate90Btn;
         private System.Windows.Forms.Button saveImageBtn;
@@ -580,5 +564,6 @@
         private System.Windows.Forms.Label selectedColorBox;
         private System.Windows.Forms.Button resize_btn;
         private System.Windows.Forms.Button addElement_btn;
+        public System.Windows.Forms.PictureBox mainImage;
     }
 }

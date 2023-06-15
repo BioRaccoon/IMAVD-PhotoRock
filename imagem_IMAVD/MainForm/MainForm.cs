@@ -38,6 +38,8 @@ namespace PhotoRock
         public DashStyle cropDashStyle = DashStyle.DashDot;
         private bool cropEnabled;
         private bool colorPickerEnabled;
+        private PictureBox mainImageCopy;
+        private Image imageCopy;
         public List<Image> imageCopiesList = new List<Image>();
         public MainForm()
         {
@@ -55,7 +57,6 @@ namespace PhotoRock
         public void changeInitialControlsProperties()
         {
             loadImageBtn.Enabled = true;
-            mainImageCopy.Visible = false;
             selectedColorBox.Text = "White (Default Color)";
             selectedColorBox.TextAlign = ContentAlignment.MiddleCenter;
             selectedColorBox.BackColor = Color.White;
@@ -145,12 +146,16 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
+                mainImageCopy = mainImage;
                 filePath = openFileDialog1.FileName;
+                imageCopy = Image.FromFile(filePath);
                 mainImage.Image = Image.FromFile(filePath);
                 mainImageCopy.Image = Image.FromFile(filePath);
+                //mainImageCopy.Width = mainImage.Width;
+                //mainImageCopy.Height = mainImage.Height;
                 img = Image.FromFile(filePath);
                 imageIsSelected = true;
-                imageCopiesList.Add(img);
+                //imageCopiesList.Add(img);
 
                 activateAllButtonControls();
 
@@ -174,7 +179,7 @@ namespace PhotoRock
                 zoomComboBox.SelectedItem = zooms[1];
 
                 imageCopiesList = new List<Image>();
-                imageCopiesList.Add(mainImage.Image);
+                //imageCopiesList.Add(mainImage.Image);
             }
             activateAllButtonControls();
         }
@@ -263,6 +268,7 @@ namespace PhotoRock
                 g.CompositingQuality = CompositingQuality.HighQuality;
 
                 g.DrawImage(OriginalImage, 0, 0, rect, GraphicsUnit.Pixel);
+                imageCopiesList.Add(mainImage.Image);
                 mainImage.Image = _img;
                 //pictureBox1.Width = _img.Width;
                 //pictureBox1.Height = _img.Height;
@@ -270,7 +276,7 @@ namespace PhotoRock
                 cropBtn.Enabled = false;
                 cropEnabled = false;
                 selectCropAreaBtn.Text = "Select Area";
-                imageCopiesList.Add(mainImage.Image);
+                //imageCopiesList.Add(mainImage.Image);
             }
         }
 
@@ -303,8 +309,9 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
-                mainImage.Image = crop2SquareForm.newImageToWork;
                 imageCopiesList.Add(mainImage.Image);
+                mainImage.Image = crop2SquareForm.newImageToWork;
+                //imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop2SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2SquareForm.newImageToWork.Height;
             }
@@ -322,6 +329,7 @@ namespace PhotoRock
 
             Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = Rotate45(OriginalImage, tilted);
+            imageCopiesList.Add(mainImage.Image);
             mainImage.Image = _img;
             tilted = !tilted;
         }
@@ -335,8 +343,9 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
-                mainImage.Image = crop4SquareForm.newImageToWork;
                 imageCopiesList.Add(mainImage.Image);
+                mainImage.Image = crop4SquareForm.newImageToWork;
+                //imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop4SquareForm.newImageToWork.Width;
                 //pictureBox1.Height = crop4SquareForm.newImageToWork.Height;
             }
@@ -352,8 +361,9 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
-                mainImage.Image = crop2TriangleForm.newImageToWork;
                 imageCopiesList.Add(mainImage.Image);
+                mainImage.Image = crop2TriangleForm.newImageToWork;
+                //imageCopiesList.Add(mainImage.Image);
                 //pictureBox1.Width = crop2TriangleForm.newImageToWork.Width;
                 //pictureBox1.Height = crop2TriangleForm.newImageToWork.Height;
             }
@@ -369,6 +379,7 @@ namespace PhotoRock
 
             Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = RotateImageN(OriginalImage, 90.0F);
+            imageCopiesList.Add(mainImage.Image);
             mainImage.Image = _img;
         }
 
@@ -381,6 +392,7 @@ namespace PhotoRock
 
             Bitmap OriginalImage = new Bitmap(mainImage.Image, mainImage.Width, mainImage.Height);
             Bitmap _img = RotateImageN(OriginalImage, 180.0F);
+            imageCopiesList.Add(mainImage.Image);
             mainImage.Image = _img;
         }
 
@@ -450,17 +462,19 @@ namespace PhotoRock
             if (mainImage.Image == null) {
                 return;
             }
-            Image img = mainImage.Image;
-                //rotate the picture by 90 degrees and re-save the picture as a Jpeg
-                img.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            imageCopiesList.Add(mainImage.Image);
+            Image img = new Bitmap(mainImage.Image);
+            //rotate the picture by 90 degrees and re-save the picture as a Jpeg
+            img.RotateFlip(RotateFlipType.RotateNoneFlipX);
             mainImage.Image = img;
-        }
+        } 
 
         private void flipVBtn_Click(object sender, EventArgs e) {
             if (mainImage.Image == null) {
                 return;
             }
-            Image img = mainImage.Image;
+            imageCopiesList.Add(mainImage.Image);
+            Image img = new Bitmap(mainImage.Image);
             //rotate the picture by 90 degrees and re-save the picture as a Jpeg
             img.RotateFlip(RotateFlipType.RotateNoneFlipY);
             mainImage.Image = img;
@@ -468,6 +482,7 @@ namespace PhotoRock
 
         private void redFilter_Click(object sender, EventArgs e)
         {
+            imageCopiesList.Add(mainImage.Image);
             Bitmap filteredImage = (Bitmap)mainImage.Image;
             for (int y = 0; y < filteredImage.Height; y++)
             {
@@ -479,12 +494,12 @@ namespace PhotoRock
                     mainImage.Image = filteredImage;
                 }
             }
-            imageCopiesList.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
         private void greenFilter_Click(object sender, EventArgs e)
         {
+            imageCopiesList.Add(mainImage.Image);
             Bitmap filteredImage = (Bitmap)mainImage.Image;
             for (int y = 0; y < filteredImage.Height; y++)
             {
@@ -496,12 +511,12 @@ namespace PhotoRock
                     mainImage.Image = filteredImage;
                 }
             }
-            imageCopiesList.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
         private void blueFilter_Click(object sender, EventArgs e)
         {
+            imageCopiesList.Add(mainImage.Image);
             Bitmap filteredImage = (Bitmap)mainImage.Image;
             for (int y = 0; y < filteredImage.Height; y++)
             {
@@ -514,7 +529,6 @@ namespace PhotoRock
                     
                 }
             }
-            imageCopiesList.Add(mainImage.Image);
             imageHasFilter = true;
         }
 
@@ -522,17 +536,25 @@ namespace PhotoRock
         {
             if(imageHasFilter)
             {
-                mainImage.Image = mainImageCopy.Image;
                 imageHasFilter=false;
             } 
         }
 
         private void undoBtn_Click(object sender, EventArgs e)
         {
-            if (imageCopiesList.Count > 1) {
-                mainImage.Image = imageCopiesList[imageCopiesList.Count - 2];
+            if (imageCopiesList.Count > 0) {
+                mainImage.Image = imageCopiesList[imageCopiesList.Count - 1];
                 imageCopiesList.RemoveAt(imageCopiesList.Count - 1);
             }
+            if (imageHasFilter)
+            {
+               mainImage.Image = imageCopy;
+            }
+
+            //mainImage.Width = mainImage.Image.Width;
+            //mainImage.Height = mainImage.Image.Height;
+            mainImage.Width = 450;
+            mainImage.Height = 450;
         }
 
         private void zoomComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -553,8 +575,8 @@ namespace PhotoRock
 
             Bitmap OriginalImage = new Bitmap(unzoomedImg, unzoomedImg.Width, unzoomedImg.Height);
             Bitmap _img = zoomImage(OriginalImage, scIdx);
+            imageCopiesList.Add(mainImage.Image);
             mainImage.Image = _img;
-            imageCopiesList.Add(_img);
         }
 
         private Bitmap zoomImage(Bitmap b, float scIdx)
@@ -611,8 +633,8 @@ namespace PhotoRock
 
             if (result == DialogResult.OK)
             {
-                mainImage.Image = gcbForm.adjustedImage;
                 imageCopiesList.Add(mainImage.Image);
+                mainImage.Image = gcbForm.adjustedImage;
             }
 
         }
@@ -755,12 +777,12 @@ namespace PhotoRock
 
         private void resize_btn_Click(object sender, EventArgs e)
         {
-              // Create a new form for the user to input the width and height values
-    var resizeForm = new Form
-    {
-        Text = "Resize Image",
-        Size = new Size(200, 150)
-    };
+            // Create a new form for the user to input the width and height values
+            var resizeForm = new Form
+            {
+                Text = "Resize Image",
+                Size = new Size(200, 150)
+            };
 
             var widthLabel = new System.Windows.Forms.Label
             {
@@ -777,49 +799,49 @@ namespace PhotoRock
 
             // Create two text boxes for the user to input the width and height values
             var widthTextBox = new System.Windows.Forms.TextBox
-    {
-        Location = new Point(60, 10),
-        Size = new Size(150, 20)
-    };
-    var heightTextBox = new System.Windows.Forms.TextBox
-    {
-        Location = new Point(60, 40),
-        Size = new Size(150, 20)
-    };
+            {
+                Location = new Point(60, 10),
+                Size = new Size(150, 20)
+            };
+            var heightTextBox = new System.Windows.Forms.TextBox
+            {
+                Location = new Point(60, 40),
+                Size = new Size(150, 20)
+            };
 
             // Add the text boxes to the form
             resizeForm.Controls.Add(widthLabel);
             resizeForm.Controls.Add(heightLabel);
             resizeForm.Controls.Add(widthTextBox);
-    resizeForm.Controls.Add(heightTextBox);
+            resizeForm.Controls.Add(heightTextBox);
 
-    // Create a button for the user to confirm their input
-    var okButton = new System.Windows.Forms.Button
-    {
-        Text = "OK",
-        Location = new Point(70, 80),
-        DialogResult = DialogResult.OK
-    };
+            // Create a button for the user to confirm their input
+            var okButton = new System.Windows.Forms.Button
+            {
+                Text = "OK",
+                Location = new Point(70, 80),
+                DialogResult = DialogResult.OK
+            };
 
-    // Add the OK button to the form
-    resizeForm.Controls.Add(okButton);
+            // Add the OK button to the form
+            resizeForm.Controls.Add(okButton);
 
-    // Display the form to the user and wait for them to input the width and height values
-    if (resizeForm.ShowDialog() == DialogResult.OK)
-    {
-        // Retrieve the width and height values from the text boxes
-        int width, height;
-        if (int.TryParse(widthTextBox.Text, out width) && int.TryParse(heightTextBox.Text, out height))
-        {
-            // Set the width and height of the picture box to the user input values
-            mainImage.Width = width;
-            mainImage.Height = height;
-        }
-        else
-        {
-            MessageBox.Show("Invalid input. Please enter a valid integer value for the width and height.");
-        }
-    }
+            // Display the form to the user and wait for them to input the width and height values
+            if (resizeForm.ShowDialog() == DialogResult.OK)
+            {
+                // Retrieve the width and height values from the text boxes
+                int width, height;
+                if (int.TryParse(widthTextBox.Text, out width) && int.TryParse(heightTextBox.Text, out height))
+                {
+                    // Set the width and height of the picture box to the user input values
+                    mainImage.Width = width;
+                    mainImage.Height = height;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input. Please enter a valid integer value for the width and height.");
+                }
+            }
         }
 
         private void addElement_btn_Click(object sender, EventArgs e)
